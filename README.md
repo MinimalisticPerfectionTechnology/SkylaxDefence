@@ -1,2 +1,2 @@
 # SkylaxDefence
-Tower defence game in java and open OpenGL
+Tower defence game in java and OpenGL
