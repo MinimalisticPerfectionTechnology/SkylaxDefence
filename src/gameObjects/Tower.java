@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class GOTower extends GameObject implements shootable{
+public class Tower extends GameObject implements shootable{
 
 	protected int range;
 	protected int damege;
@@ -14,24 +14,28 @@ public class GOTower extends GameObject implements shootable{
 	public int velosityX;
 	public int velosityY;
 	public Priority priority;
+	
+	
+	private float angle;
+	
 //	private boolean isShooting = false;
 
 	public Priority getPriority() {
 		return priority;
 	}
-	protected ArrayList<GOEnemy> enemysInRange;
+	protected ArrayList<Enemy> enemysInRange;
 	private int counter = 0;
 
 	// protected int INTERVAL;
 
-	public GOTower(float x, float y) {
+	public Tower(float x, float y) {
 		this.x = x;
 		this.y = y;
 		sx = 40;
 		sy = 40;
-		enemysInRange = new ArrayList<GOEnemy>();
+		enemysInRange = new ArrayList<Enemy>();
 		//		priority = Priority.FIRST;
-		priority = Priority.STRONG;
+		priority = Priority.WEAK;
 	}
 
 	public void setPriority(Priority priority) {
@@ -45,7 +49,7 @@ public class GOTower extends GameObject implements shootable{
 	@Override
 	public void update() {
 		enemysInRange.clear();
-		for(GOEnemy enemy : game.Game.enemys){
+		for(Enemy enemy : game.Game.enemys){
 			if(enemy.isInRange(x, y, range)){
 			enemysInRange.add(enemy);
 			}
@@ -64,7 +68,7 @@ public class GOTower extends GameObject implements shootable{
 	}
 
 	@Override
-	public GOEnemy aim() {
+	public Enemy aim() {
 		if(!enemysInRange.isEmpty()){
 			switch (priority) {
 
@@ -78,8 +82,8 @@ public class GOTower extends GameObject implements shootable{
 			case STRONG:
 				System.out.println("Priority is: STRONG");
 
-				Collections.sort(enemysInRange, new Comparator<GOEnemy>() {
-					public int compare(GOEnemy o1, GOEnemy o2){
+				Collections.sort(enemysInRange, new Comparator<Enemy>() {
+					public int compare(Enemy o1, Enemy o2){
 						return Integer.compare(o1.getHealth(), o2.getHealth());
 					}
 				});
@@ -89,10 +93,19 @@ public class GOTower extends GameObject implements shootable{
 //					System.out.println("Enemy " + i + " health: " + thisEnemy.getHealth());
 //					i ++;
 //				}
-				return Collections.max(enemysInRange);
+				
+				return enemysInRange.get(enemysInRange.size()-1);
+//				return Collections.max(enemysInRange);
 
 			case WEAK:
 				System.out.println("Priority is: WEAK");
+				
+				Collections.sort(enemysInRange, new Comparator<Enemy>() {
+					public int compare(Enemy o1, Enemy o2){
+						return Integer.compare(o1.getHealth(), o2.getHealth());
+					}
+				});
+				return enemysInRange.get(0);
 
 			case FAST:
 				System.out.println("Priority is: FAST");
@@ -101,15 +114,19 @@ public class GOTower extends GameObject implements shootable{
 				System.out.println("Priority is: SLOW");
 			}
 		}
-
+		
 		// return enemys.get(0);
 		return null;
 	}
 
 	@Override
-	public boolean shoot(GOEnemy enemy) {
+	public boolean shoot(Enemy enemy) {
 		if(!(enemy == null)){
-			System.out.println("I shoooot! at an enemy at x: " + enemy.getX());
+			
+			angle = getAngleToPoint(enemy.getX(), enemy.getY(), x, y);
+			
+			game.Game.objectsToAdd.add(new Shot(x, y, angle));
+			
 			enemy.gotHit();
 			if(enemy.health <= 0){
 				enemy.gotDestroyed();
@@ -120,6 +137,18 @@ public class GOTower extends GameObject implements shootable{
 		}
 		return true;
 	}
+	
+	
+	
+	private float getAngleToPoint(float targetX, float targetY, float originX, float originY) {
+		float currentLengthX = originX- targetX;
+		float currentLengthY = originY - targetY;
+
+		return (float) (Math.atan2(currentLengthY, currentLengthX)+(Math.PI));
+	}
+	
+	
+	
 
 	@Override
 	public void hit() {

@@ -1,9 +1,9 @@
 package game;
 
-import gameObjects.GODrone;
-import gameObjects.GOEnemy;
-import gameObjects.GOMiniGun;
-import gameObjects.GOTank;
+import gameObjects.Drone;
+import gameObjects.Enemy;
+import gameObjects.MiniGun;
+import gameObjects.Tank;
 import gameObjects.GameObject;
 
 import java.util.ArrayList;
@@ -15,14 +15,18 @@ import actions.ActionHandler;
 import actions.UserInput;
 
 public class Game {
+	
+	public static ArrayList<GameObject> objectsToAdd;
+	
 	private static ArrayList<GameObject> objects;
-	public static ArrayList<GOEnemy> enemys;
+	public static ArrayList<Enemy> enemys;
 	private ArrayList<ActionHandler> actions;
 
 	public Game() {
+		objectsToAdd = new ArrayList<GameObject>();
 		objects = new ArrayList<GameObject>();
 		actions = new ArrayList<ActionHandler>();
-		enemys = new ArrayList<GOEnemy>();
+		enemys = new ArrayList<Enemy>();
 		// GOShot shot = new GOShot(Display.getWidth() / 2 - GOShot.SIZE / 2,
 		// Display.getHeight() / 2 - GOShot.SIZE / 2);
 		// objects.add(shot);
@@ -31,11 +35,11 @@ public class Game {
 		 * joppe was here:
 		 */
 
-		GODrone drone1 = new GODrone(50, 50, 20, 20);
+		Drone drone1 = new Drone(50, 50, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
 
-		GODrone drone2 = new GODrone(200, 40, 60, 60);
+		Drone drone2 = new Drone(200, 40, 60, 60);
 		drone2.gotHit();
 		drone2.gotHit();
 		drone2.gotHit();
@@ -46,7 +50,7 @@ public class Game {
 //		 enemys.add(drone3);
 //		 objects.add(drone3);
 		
-		GOTank tank1 = new GOTank(600, 5, 80, 80);
+		Tank tank1 = new Tank(600, 5, 80, 80);
 		enemys.add(tank1);
 		objects.add(tank1);
 
@@ -54,7 +58,7 @@ public class Game {
 		// enemys.add(tank2);
 		// objects.add(tank2);
 
-		GOMiniGun miniGun1 = new GOMiniGun(Display.getWidth() - 30, Display.getHeight() / 4);
+		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4);
 		objects.add(miniGun1);
 		
 //		GOMiniGun miniGun2 = new GOMiniGun(Display.getWidth() - 700, Display.getHeight() / 2, enemys);
@@ -79,14 +83,14 @@ public class Game {
 
 	public void update() {
 
-		for (GOEnemy enemy : enemys){
+		for (Enemy enemy : enemys){
 			System.out.println("Enemy health: " + enemy.health);
 		}
 		System.out.println("______________________________________________________________________");
 
-		for (Iterator<GOEnemy> iterator = enemys.iterator(); iterator.hasNext();) {
+		for (Iterator<Enemy> iterator = enemys.iterator(); iterator.hasNext();) {
 			System.out.println("iterator");
-			GOEnemy enemy = iterator.next();
+			Enemy enemy = iterator.next();
 			if (enemy.health <= 0){
 				// Remove the current element from the iterator and the list.
 				objects.remove(enemy);
@@ -97,6 +101,9 @@ public class Game {
 		for (GameObject gameObject : objects) {
 			gameObject.update();
 		}
+		
+		objects.addAll(objectsToAdd);
+		objectsToAdd.remove(objectsToAdd);
 	}
 
 	public void render() {

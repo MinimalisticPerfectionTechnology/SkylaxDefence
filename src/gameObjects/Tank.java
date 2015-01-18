@@ -1,7 +1,7 @@
 package gameObjects;
 
-public class GOTank extends GOEnemy{
-	public GOTank(float x, float y, float sx, float sy) {
+public class Tank extends Enemy{
+	public Tank(float x, float y, float sx, float sy) {
 		super(x, y, sx, sy);
 
 		this.r = 0;

@@ -1,11 +1,11 @@
 package gameObjects;
 
-public class GOEnemy extends GameObject implements Comparable<GOEnemy> {
+public class Enemy extends GameObject implements Comparable<Enemy> {
 
 	public int health;
 	public int speed;
 
-	public GOEnemy(float x, float y, float sx, float sy) {
+	public Enemy(float x, float y, float sx, float sy) {
 
 		this.x = x;
 		this.y = y;
@@ -30,7 +30,7 @@ public class GOEnemy extends GameObject implements Comparable<GOEnemy> {
 	}
 
 	@Override
-	public int compareTo(GOEnemy o) {
+	public int compareTo(Enemy o) {
 		return 0;
 	}
 

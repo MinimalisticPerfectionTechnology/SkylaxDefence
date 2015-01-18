@@ -1,7 +1,7 @@
 package gameObjects;
 
-public class GODrone extends GOEnemy {
-	public GODrone(float x, float y, float sx, float sy) {
+public class Drone extends Enemy {
+	public Drone(float x, float y, float sx, float sy) {
 		super(x, y, sx, sy);
 
 		this.r = 1;

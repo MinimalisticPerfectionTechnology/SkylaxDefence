@@ -1,6 +1,6 @@
 package gameObjects;
 
-public class GOMiniGun extends GOTower {
+public class MiniGun extends Tower {
 
 	public static final float R = 0.4f;
 	public static final float G = 0.4f;
@@ -13,11 +13,11 @@ public class GOMiniGun extends GOTower {
 	public int velosityX;
 	public int velosityY;
 
-	public GOMiniGun(float x, float y) {
+	public MiniGun(float x, float y) {
 		super(x, y);
 		this.range = 500;
 		this.damege = 10;
-		this.fireRate = 10;
+		this.fireRate = 1;
 
 		r = R;
 		g = G;

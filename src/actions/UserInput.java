@@ -2,8 +2,6 @@ package actions;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-
 public class UserInput extends ActionHandler{
 
 	public UserInput(){

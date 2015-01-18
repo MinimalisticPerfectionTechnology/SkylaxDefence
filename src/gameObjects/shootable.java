@@ -2,9 +2,9 @@ package gameObjects;
 
 public interface shootable {
 
-	public GOEnemy aim(); 
+	public Enemy aim(); 
 
-	public boolean shoot(GOEnemy enemy);
+	public boolean shoot(Enemy enemy);
 	
 	public void hit();
 
