@@ -1,4 +1,4 @@
-package gameObjects;
+package helpers;
 
 import static org.lwjgl.opengl.GL11.*;
 //import game.Main;
@@ -17,16 +17,16 @@ import org.newdawn.slick.util.ResourceLoader;
 import org.lwjgl.opengl.Display;
 
 public class Draw {
-	public static final int WIDTH = 960, HEIGHT = 540;
-
-	// public static final int WIDTH = 1920, HEIGHT = 1080;
+//	public static final int WIDTH = 960, HEIGHT = 540;
+	public static final int WIDTH = 1500, HEIGHT = 800;
+//	 public static final int WIDTH = 1920, HEIGHT = 1080;
 
 	public static void initDisplay() {
 		Display.setTitle("Scylax Defence");
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.create();
-			Display.setVSyncEnabled(true);
+//			Display.setVSyncEnabled(true);
 			Keyboard.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -45,44 +45,37 @@ public class Draw {
 		// glDisable(GL_DEPTH_TEST);
 	}
 
-	// public static void background() {
-	// glPushMatrix();
-	// glBegin(GL_QUADS); {
-	// glColor3f(0.2f, 0.2f, 0.9f);
-	// glVertex2f(0, 0);
-	// glVertex2f(0, Display.getHeight());
-	// glVertex2f(Display.getWidth(), Display.getHeight());
-	// glVertex2f(Display.getWidth(), 0);
-	//
-	// }glEnd();
-	// glPopMatrix();
-	//
-
 	public static void background() {
 		Texture t = LoadTexture("res/dark_background.jpg", "JPG");
+//		glPushMatrix();
 		DrawQuadTex(t, 0, 0, WIDTH, HEIGHT);
 	}
+	
+	public static void grass(){
+		Texture t = LoadTexture("res/Rp9oxyl.png", "PNG");
+		DrawQuadTex(t, 0, 0, 64, 64);
+	}
 
-	public static void DrawQuadTex(Texture tex, float x, float y, float width,
-			float height) {
+	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
+//		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 		tex.bind();
 		glTranslatef(x, y, 0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glColor3f(1, 1, 1);
 		glBegin(GL_QUADS);
 		{
 			glTexCoord2f(0, 0);
 			glVertex2f(0, 0);
 			glTexCoord2f(1, 0);
-			glVertex2f(WIDTH, 0);
+			glVertex2f(width, 0);
 			glTexCoord2f(1, 1);
-			glVertex2f(WIDTH, HEIGHT);
+			glVertex2f(width, height);
 			glTexCoord2f(0, 1);
-			glVertex2f(0, HEIGHT);
+			glVertex2f(0, height);
 		}
 		glEnd();
-		// glLoadIdentity();
+//		glLoadIdentity();
 	}
 
 	public static void rect(float r, float g, float b, float x, float y,
