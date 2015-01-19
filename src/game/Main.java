@@ -1,7 +1,7 @@
 package game; 
 
-import static gameObjects.Draw.initDisplay;
-import static gameObjects.Draw.initGL;
+import static helpers.Draw.initDisplay;
+import static helpers.Draw.initGL;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.input.Keyboard;

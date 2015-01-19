@@ -1,24 +1,25 @@
 package game;
 
-import gameObjects.Draw;
 import gameObjects.Drone;
 import gameObjects.Enemy;
+import gameObjects.GameObject;
 import gameObjects.MiniGun;
 import gameObjects.Shot;
 import gameObjects.Tank;
-import gameObjects.GameObject;
 import gameObjects.Tower;
+import helpers.Draw;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
 
 import actions.ActionHandler;
 import actions.UserInput;
 
 public class Game {
-	
+	public static Texture texture;
 	public static ArrayList<GameObject> objectsToAdd;
 	public static ArrayList<Enemy> enemiesToAdd;
 	
@@ -36,11 +37,9 @@ public class Game {
 		// GOShot shot = new GOShot(Display.getWidth() / 2 - GOShot.SIZE / 2,
 		// Display.getHeight() / 2 - GOShot.SIZE / 2);
 		// objects.add(shot);
-
-		/*
-		 * joppe was here:
-		 */
-
+		
+		texture = Draw.createTile(true);
+		
 		Drone drone1 = new Drone(50, 50, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
@@ -153,6 +152,7 @@ public class Game {
 
 	public void render() {
 		// Draw.background();
+		Draw.DrawQuadTex(texture, 0, 0, 64, 64);
 		for (GameObject gameObject : objects) {
 			gameObject.render();
 		}

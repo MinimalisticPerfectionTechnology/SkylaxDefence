@@ -1,5 +1,7 @@
 package gameObjects;
 
+import helpers.Draw;
+
 public abstract class GameObject {
 
 	protected float r;

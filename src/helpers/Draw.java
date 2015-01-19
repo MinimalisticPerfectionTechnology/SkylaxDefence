@@ -1,12 +1,12 @@
 package helpers;
-
 import static org.lwjgl.opengl.GL11.*;
-//import game.Main;
 
 import java.io.IOException;
 import java.io.InputStream;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
+
+
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -45,15 +45,17 @@ public class Draw {
 		// glDisable(GL_DEPTH_TEST);
 	}
 
-	public static void background() {
-		Texture t = LoadTexture("res/dark_background.jpg", "JPG");
-//		glPushMatrix();
-		DrawQuadTex(t, 0, 0, WIDTH, HEIGHT);
-	}
+//	public static void background() {
+//		Texture t = LoadTexture("res/dark_background.jpg", "JPG");
+////		glPushMatrix();
+//		DrawQuadTex(t, 0, 0, WIDTH, HEIGHT);
+//	}
 	
-	public static void grass(){
-		Texture t = LoadTexture("res/Rp9oxyl.png", "PNG");
-		DrawQuadTex(t, 0, 0, 64, 64);
+	
+	
+	public static Texture createTile(boolean b){
+		Texture t = quickLoad(b?("grass64"):"dirt64");
+		return t;
 	}
 
 	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
@@ -113,6 +115,12 @@ public class Draw {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return tex;
+	}
+	
+	public static Texture quickLoad(String name){
+		Texture tex = null;
+		tex = LoadTexture("res/" + name + ".png", "PNG");
 		return tex;
 	}
 }
