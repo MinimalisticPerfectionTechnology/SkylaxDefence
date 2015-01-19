@@ -61,7 +61,8 @@ public class Draw {
 	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
 //		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
-		tex.bind();
+//		System.out.println(tex.toString());
+		tex.bind();				//FIXME		something with init
 		glTranslatef(x, y, 0);
 //		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glColor3f(1, 1, 1);
@@ -77,7 +78,7 @@ public class Draw {
 			glVertex2f(0, height);
 		}
 		glEnd();
-//		glLoadIdentity();
+		glLoadIdentity();
 	}
 
 	public static void rect(float r, float g, float b, float x, float y,

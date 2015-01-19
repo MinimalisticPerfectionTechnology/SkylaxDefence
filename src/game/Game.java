@@ -8,6 +8,8 @@ import gameObjects.Shot;
 import gameObjects.Tank;
 import gameObjects.Tower;
 import helpers.Draw;
+import helpers.Tile;
+import helpers.TileType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +21,10 @@ import actions.ActionHandler;
 import actions.UserInput;
 
 public class Game {
-	public static Texture texture;
+	public static Tile[][] tiles;
+	public static Texture grass;
+	public static Texture dirt;
+//	public static ArrayList<Tile> tiles;
 	public static ArrayList<GameObject> objectsToAdd;
 	public static ArrayList<Enemy> enemiesToAdd;
 	
@@ -28,6 +33,8 @@ public class Game {
 	private ArrayList<ActionHandler> actions;
 
 	public Game() {
+//		tiles = new ArrayList<Tile>();
+		tiles = new Tile[10][15];
 		objectsToAdd = new ArrayList<GameObject>();
 		enemiesToAdd = new ArrayList<Enemy>();
 		objects = new ArrayList<GameObject>();
@@ -38,8 +45,15 @@ public class Game {
 		// Display.getHeight() / 2 - GOShot.SIZE / 2);
 		// objects.add(shot);
 		
-		texture = Draw.createTile(true);
+		grass = Draw.createTile(true);
+		dirt = Draw.createTile(false);
 		
+		Tile grass = new Tile(0, 0, 64, 64, TileType.Grass);
+		tiles[0][0] = grass;
+
+		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
+		tiles[0][1] = (dirt);
+
 		Drone drone1 = new Drone(50, 50, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
@@ -67,10 +81,10 @@ public class Game {
 		objects.add(miniGun1);
 		
 		
-		/*
+		
 		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2);
 		objects.add(miniGun2);
-		*/
+		
 //		
 //		GOMiniGun miniGun3 = new GOMiniGun(Display.getWidth() - 400, Display.getHeight() / 6, enemys);
 //		objects.add(miniGun3);
@@ -140,7 +154,7 @@ public class Game {
 				}
 			}
 			if((o.getX() < 0 || o.getX() > Draw.WIDTH || o.getY() < 0 || o.getY() > Draw.HEIGHT) && iterator.hasNext()) {
-				iterator.remove();
+				iterator.remove();			//FIXME can't remove if a shot is on its way to it
 			}
 			
 		}
@@ -152,7 +166,15 @@ public class Game {
 
 	public void render() {
 		// Draw.background();
-		Draw.DrawQuadTex(texture, 0, 0, 64, 64);
+		Draw.DrawQuadTex(grass, 0, 0, 64, 64);
+		Draw.DrawQuadTex(dirt, 0, 64, 64, 64);
+
+		for(int i = 0; i < 10; i++){
+			for(int ii = 0; ii < 15; ii++){
+//				Draw.DrawQuadTex(tiles[i][ii].getTexture(), tiles[i][ii].getX(), tiles[i][ii].getY(), tiles[i][ii].getWidth(), tiles[i][ii].getHeight());
+			}
+		}			
+
 		for (GameObject gameObject : objects) {
 			gameObject.render();
 		}

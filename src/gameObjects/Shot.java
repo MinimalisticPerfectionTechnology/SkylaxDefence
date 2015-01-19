@@ -5,7 +5,7 @@ import game.Physics;
 public class Shot extends GameObject {
 
 	
-	public static float SHOT_VELOSITY = 3;
+	public static float SHOT_VELOSITY = 30;
 	
 	public static final float R = 0.5f;
 	public static final float G = 0.5f;
@@ -14,8 +14,6 @@ public class Shot extends GameObject {
 	public static final int MAX_SPEEDX = 2;
 	public static final int MAX_SPEEDY = 8;
 
-	public int velosity = 10;
-//	public int velosityY;
 	private double angle;
 	private boolean destroyMe = false;
 

@@ -97,7 +97,6 @@ public class Tower extends GameObject implements shootable{
 //				}
 				
 				return enemysInRange.get(enemysInRange.size()-1);
-//				return Collections.max(enemysInRange);
 
 			case WEAK:
 //				System.out.println("Priority is: WEAK");
