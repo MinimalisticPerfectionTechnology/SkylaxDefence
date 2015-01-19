@@ -89,7 +89,7 @@ public class Game {
 		System.out.println("______________________________________________________________________");
 
 		for (Iterator<Enemy> iterator = enemys.iterator(); iterator.hasNext();) {
-			System.out.println("iterator");
+//			System.out.println("iterator");
 			Enemy enemy = iterator.next();
 			if (enemy.health <= 0){
 				// Remove the current element from the iterator and the list.
@@ -103,7 +103,7 @@ public class Game {
 		}
 		
 		objects.addAll(objectsToAdd);
-		objectsToAdd.remove(objectsToAdd);
+		objectsToAdd.clear();
 	}
 
 	public void render() {

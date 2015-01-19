@@ -5,12 +5,18 @@ public class Enemy extends GameObject implements Comparable<Enemy> {
 	public int health;
 	public int speed;
 
+	public int getSpeed() {
+		return speed;
+	}
+
 	public Enemy(float x, float y, float sx, float sy) {
 
 		this.x = x;
 		this.y = y;
 		this.sx = sx;
 		this.sy = sy;
+		this.dx = 1;
+		this.dy = 1;
 	}
 
 	public int getHealth() {
@@ -25,8 +31,11 @@ public class Enemy extends GameObject implements Comparable<Enemy> {
 
 	@Override
 	public void update() {
-		this.x += speed;
-		this.y += speed;
+		this.x += dx * speed;
+		this.y += dy * speed;
+		
+//		this.x +=  speed;
+//		this.y += speed;
 	}
 
 	@Override

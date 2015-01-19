@@ -9,6 +9,8 @@ public abstract class GameObject {
 	protected float y;
 	protected float sx;
 	protected float sy;
+	protected float dx;
+	protected float dy;
 
 	public abstract void update();
 
@@ -18,6 +20,14 @@ public abstract class GameObject {
 
 	public float getX() {
 		return x;
+	}
+
+	public float getDx() {
+		return dx;
+	}
+
+	public float getDy() {
+		return dy;
 	}
 
 	public float getY() {

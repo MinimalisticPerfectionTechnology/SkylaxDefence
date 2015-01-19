@@ -123,11 +123,16 @@ public class Tower extends GameObject implements shootable{
 	public boolean shoot(Enemy enemy) {
 		if(!(enemy == null)){
 			
-			angle = getAngleToPoint(enemy.getX(), enemy.getY(), x, y);
+//			angle = getAngleToPoint(enemy.getX(), enemy.getY(), x, y);
 			
-			game.Game.objectsToAdd.add(new Shot(x, y, angle));
 			
-			enemy.gotHit();
+			float[] enemyWillBeAt = getNewEnemyCoordinates(enemy);
+			
+			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
+			
+			game.Game.objectsToAdd.add(new Shot(x, y, d[0], d[1]));
+			
+//			enemy.gotHit();
 			if(enemy.health <= 0){
 				enemy.gotDestroyed();
 				
@@ -138,15 +143,57 @@ public class Tower extends GameObject implements shootable{
 		return true;
 	}
 	
+	private float[] getNewEnemyCoordinates(Enemy enemy) {
+		
+		
+		float enemyXMove = enemy.getDx() * enemy.getSpeed();
+		float enemyYMove = enemy.getDy() * enemy.getSpeed();
+		
+		float currentEX = enemy.getX();
+		float currentEY = enemy.getY();
+		float currentLenght =(float) Math.sqrt((Math.pow(currentEX - this.getX(), 2) + Math.pow(currentEY - this.getY(), 2)));
+		
+		
+		int i = 1;
+		while(true) {
+			if(currentLenght <= Shot.SHOT_VELOSITY*i) {
+				return new float[]{currentEX, currentEY};
+			} else {
+				currentEX += enemyXMove;
+				currentEY += enemyYMove;
+				
+				currentLenght = (float) Math.sqrt((Math.pow(currentEX - this.getX(), 2) + Math.pow(currentEY - this.getY(), 2)));
+				
+			}
+			
+			
+			i++;
+		}
+		
+
+	}
 	
 	
+	
+	private float[] getInternarShotSpeed(float targetX, float targetY, float originX, float originY) {
+		float dx = originX - targetX;
+		float dy = originY - targetY;
+		float norm = (float) Math.sqrt(dx * dx + dy * dy);
+		dx *= (1 / norm);
+		dy *= (1 / norm);
+		return new float[] {dx, dy};
+		
+		
+	}
+	
+	/*
 	private float getAngleToPoint(float targetX, float targetY, float originX, float originY) {
 		float currentLengthX = originX- targetX;
 		float currentLengthY = originY - targetY;
 
 		return (float) (Math.atan2(currentLengthY, currentLengthX)+(Math.PI));
 	}
-	
+	*/
 	
 	
 
