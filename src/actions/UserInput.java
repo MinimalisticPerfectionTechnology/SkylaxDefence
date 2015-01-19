@@ -48,6 +48,7 @@ public class UserInput extends ActionHandler{
 			} else{
 				if(Mouse.getEventButton() == 0){
 					System.out.println("VÄNSTER SLÄPP");
+					game.setInput("leftRelease", 0, 0);
 				}
 				if(Mouse.getEventButton() == 1){
 					System.out.println("HÖGER SLÄPP");

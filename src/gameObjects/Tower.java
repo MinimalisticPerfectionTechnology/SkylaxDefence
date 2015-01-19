@@ -82,7 +82,7 @@ public class Tower extends GameObject implements shootable{
 				System.out.println("Priority is: LAST");
 
 			case STRONG:
-				System.out.println("Priority is: STRONG");
+//				System.out.println("Priority is: STRONG");
 
 				Collections.sort(enemysInRange, new Comparator<Enemy>() {
 					public int compare(Enemy o1, Enemy o2){
@@ -100,7 +100,7 @@ public class Tower extends GameObject implements shootable{
 //				return Collections.max(enemysInRange);
 
 			case WEAK:
-				System.out.println("Priority is: WEAK");
+//				System.out.println("Priority is: WEAK");
 				
 				Collections.sort(enemysInRange, new Comparator<Enemy>() {
 					public int compare(Enemy o1, Enemy o2){
@@ -231,6 +231,7 @@ public class Tower extends GameObject implements shootable{
 	 * to the general game-class.
 	 */
 	
+
 	public boolean setIsGrabbed(float x, float y) {
 		
 		if(Physics.checkCollectionCoordinates(this, x, y)) {
@@ -239,6 +240,10 @@ public class Tower extends GameObject implements shootable{
 		} else return false;
 		moveMe(x, y);
 		return true;
+	}
+	
+	public void release() {
+		isGrabbed = false;
 	}
 
 	@Override

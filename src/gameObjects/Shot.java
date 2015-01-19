@@ -5,7 +5,7 @@ import game.Physics;
 public class Shot extends GameObject {
 
 	
-	public static float SHOT_VELOSITY = 10;
+	public static float SHOT_VELOSITY = 3;
 	
 	public static final float R = 0.5f;
 	public static final float G = 0.5f;

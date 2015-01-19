@@ -1,5 +1,6 @@
 package game;
 
+import gameObjects.Draw;
 import gameObjects.Drone;
 import gameObjects.Enemy;
 import gameObjects.MiniGun;
@@ -19,6 +20,7 @@ import actions.UserInput;
 public class Game {
 	
 	public static ArrayList<GameObject> objectsToAdd;
+	public static ArrayList<Enemy> enemiesToAdd;
 	
 	private static ArrayList<GameObject> objects;
 	public static ArrayList<Enemy> enemys;
@@ -26,9 +28,11 @@ public class Game {
 
 	public Game() {
 		objectsToAdd = new ArrayList<GameObject>();
+		enemiesToAdd = new ArrayList<Enemy>();
 		objects = new ArrayList<GameObject>();
 		actions = new ArrayList<ActionHandler>();
 		enemys = new ArrayList<Enemy>();
+		
 		// GOShot shot = new GOShot(Display.getWidth() / 2 - GOShot.SIZE / 2,
 		// Display.getHeight() / 2 - GOShot.SIZE / 2);
 		// objects.add(shot);
@@ -63,8 +67,11 @@ public class Game {
 		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4);
 		objects.add(miniGun1);
 		
-//		GOMiniGun miniGun2 = new GOMiniGun(Display.getWidth() - 700, Display.getHeight() / 2, enemys);
-//		objects.add(miniGun2);
+		
+		/*
+		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2);
+		objects.add(miniGun2);
+		*/
 //		
 //		GOMiniGun miniGun3 = new GOMiniGun(Display.getWidth() - 400, Display.getHeight() / 6, enemys);
 //		objects.add(miniGun3);
@@ -82,36 +89,66 @@ public class Game {
 			actionHandler.update();
 		}
 	}
-
+	int bool = 0;
 	public void update() {
 
+		
+		
+		
+		
 		for (Enemy enemy : enemys){
 			System.out.println("Enemy health: " + enemy.health);
 		}
+		
+		
+		
+		
+		
 //		System.out.println("______________________________________________________________________");
 
+		
+		Enemy enemyLocal = null;
+		
 		for (Iterator<Enemy> iterator = enemys.iterator(); iterator.hasNext();) {
 //			System.out.println("iterator");
 			Enemy enemy = iterator.next();
-			if (enemy.health <= 0){
+			if (enemy.health <= 0 || (enemy.getX() < 0 || enemy.getX() > Draw.WIDTH || enemy.getY() < 0 || enemy.getY() > Draw.HEIGHT)){
 				// Remove the current element from the iterator and the list.
 				objects.remove(enemy);
 				iterator.remove();
+				if(bool == 0){
+				enemyLocal = new Drone((float) (Math.random()*Draw.WIDTH), 40, 20, 20);
+				bool = 1;
+				}
+				else {
+					enemyLocal = new Tank((float) (Math.random()*Draw.WIDTH), 5, 80, 80);
+					bool = 0;
+				}
+				objectsToAdd.add(enemyLocal);
+				enemiesToAdd.add(enemyLocal);
+				
 			}
+
 		}
 
 		for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
 			GameObject o = iterator.next();
 			o.update();
 			if (o instanceof Shot) {
+				
 				if(((Shot) o).isDestroyMe()) {
 					iterator.remove();
 				}
 			}
+			if((o.getX() < 0 || o.getX() > Draw.WIDTH || o.getY() < 0 || o.getY() > Draw.HEIGHT) && iterator.hasNext()) {
+				iterator.remove();
+			}
+			
 		}
-		
+		enemys.addAll(enemiesToAdd);
 		objects.addAll(objectsToAdd);
 		objectsToAdd.clear();
+		enemiesToAdd.clear();
 	}
 
 	public void render() {
@@ -151,6 +188,8 @@ public class Game {
 			if(t != null) t.setIsGrabbedMoved(x, y);
 		
 			break;
+		case "leftRelease":
+			t.release();
 		}
 	}
 }
