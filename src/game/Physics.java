@@ -14,4 +14,10 @@ public class Physics {
 		return r1.intersects(r2);
 
 	}
+	
+	public static boolean checkCollectionCoordinates(GameObject go, float x, float y) {
+		Rectangle r = new Rectangle((int)go.getX(), (int)go.getY(), (int)go.getSX(), (int)go.getSY());
+		
+		return r.intersects(x, y, r.getWidth(), r.getHeight());
+	}
 }

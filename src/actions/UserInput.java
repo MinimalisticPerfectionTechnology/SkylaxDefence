@@ -1,10 +1,23 @@
 package actions;
 
+import game.Game;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 public class UserInput extends ActionHandler{
 
-	public UserInput(){
+	/*
+	 * User input gets a Game so
+	 * that it can then the inputs
+	 * to a class that holds all
+	 * of the objects, because they can
+	 * all be affected by the input.
+	 */
+	
+	private Game game;
+
+	public UserInput(Game game){
+		this.game = game;
 	}
 
 	//	public void getInput(){
@@ -21,6 +34,13 @@ public class UserInput extends ActionHandler{
 			if (Mouse.getEventButtonState()){
 				if(Mouse.getEventButton() == 0){
 					System.out.println("VÄNSTER KLICK");
+					
+					/*
+					 * first it call the Input
+					 * method of game, just saying
+					 * "i clicked here"
+					 */
+					game.setInput("leftClick", Mouse.getX(), Mouse.getY());
 				}
 				if(Mouse.getEventButton() == 1){
 					System.out.println("HÖGER KLICK");
@@ -32,6 +52,15 @@ public class UserInput extends ActionHandler{
 				if(Mouse.getEventButton() == 1){
 					System.out.println("HÖGER SLÄPP");
 				}
+			} if(Mouse.isButtonDown(0)) {
+				/*
+				 * then it keeps saying
+				 * where the mouse x and y
+				 * is, "now passing the string "leftDown"
+				 * instead.
+				 */
+				
+				game.setInput("leftDown", Mouse.getX(), Mouse.getY());
 			}
 		}
 

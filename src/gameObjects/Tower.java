@@ -1,5 +1,6 @@
 package gameObjects;
 
+import game.Physics;
 import helpers.Enums.Priority;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Tower extends GameObject implements shootable{
 	}
 	protected ArrayList<Enemy> enemysInRange;
 	private int counter = 0;
+	private boolean isGrabbed;
 
 	// protected int INTERVAL;
 
@@ -143,6 +145,16 @@ public class Tower extends GameObject implements shootable{
 		return true;
 	}
 	
+	/*
+	 * this method utpdated the possible
+	 * coordinates where the enemy might be the next
+	 * iteration. it uses the enemies dx and dy
+	 * to se how fast it moved in each direction.
+	 * it then calculates the length till the nest point
+	 * and sees whether the shot whould be there efter
+	 * that certain amont of inerations.
+	 */
+	
 	private float[] getNewEnemyCoordinates(Enemy enemy) {
 		
 		
@@ -173,7 +185,11 @@ public class Tower extends GameObject implements shootable{
 
 	}
 	
-	
+	/*
+	 * a method I cheched up on google (only to
+	 * get the neetes one ;) that returns the
+	 * appliccable x+, and y+ normalized.
+	 */
 	
 	private float[] getInternarShotSpeed(float targetX, float targetY, float originX, float originY) {
 		float dx = originX - targetX;
@@ -195,9 +211,52 @@ public class Tower extends GameObject implements shootable{
 	}
 	*/
 	
+	/*
+	 * if the field isGrabbed is true
+	 * then set this entire object
+	 * to the coordinates of the mouse.
+	 */
 	
+	private void moveMe(float x, float y) {
+		if(isGrabbed) {
+		this.x = x;
+		this.y = y;
+		}
+	}
+	
+	/*
+	 * this method recieves the x and y
+	 * of the mouse and checks whether it was hit or not
+	 * if it was then it gives back the value true
+	 * to the general game-class.
+	 */
+	
+	public boolean setIsGrabbed(float x, float y) {
+		
+		if(Physics.checkCollectionCoordinates(this, x, y)) {
+			isGrabbed = true;
+			
+		} else return false;
+		moveMe(x, y);
+		return true;
+	}
 
 	@Override
 	public void hit() {
+	}
+
+	/*
+	 * pretty much the same as above only
+	 * that this one does not return anything,
+	 * so that it doesnt have to tage reasources
+	 * in vain.
+	 */
+	public void setIsGrabbedMoved(float x, float y) {
+		if(Physics.checkCollectionCoordinates(this, x, y)) {
+			isGrabbed = true;
+			
+		}
+		moveMe(x, y);
+		
 	}
 }

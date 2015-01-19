@@ -14,7 +14,7 @@ public class Drone extends Enemy {
 
 	public void gotHit() {
 		System.out.println("The drone got hit!");
-		health -=10;
+		health -=20;
 	}
 
 	@Override

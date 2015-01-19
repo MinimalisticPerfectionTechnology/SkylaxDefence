@@ -3,8 +3,10 @@ package game;
 import gameObjects.Drone;
 import gameObjects.Enemy;
 import gameObjects.MiniGun;
+import gameObjects.Shot;
 import gameObjects.Tank;
 import gameObjects.GameObject;
+import gameObjects.Tower;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -71,7 +73,7 @@ public class Game {
 //		objects.add(miniGun4);
 
 		// -----------------------------------------------
-		UserInput userInput = new UserInput();
+		UserInput userInput = new UserInput(this);
 		actions.add(userInput);
 	}
 
@@ -86,7 +88,7 @@ public class Game {
 		for (Enemy enemy : enemys){
 			System.out.println("Enemy health: " + enemy.health);
 		}
-		System.out.println("______________________________________________________________________");
+//		System.out.println("______________________________________________________________________");
 
 		for (Iterator<Enemy> iterator = enemys.iterator(); iterator.hasNext();) {
 //			System.out.println("iterator");
@@ -98,8 +100,14 @@ public class Game {
 			}
 		}
 
-		for (GameObject gameObject : objects) {
-			gameObject.update();
+		for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
+			GameObject o = iterator.next();
+			o.update();
+			if (o instanceof Shot) {
+				if(((Shot) o).isDestroyMe()) {
+					iterator.remove();
+				}
+			}
 		}
 		
 		objects.addAll(objectsToAdd);
@@ -110,6 +118,39 @@ public class Game {
 		// Draw.background();
 		for (GameObject gameObject : objects) {
 			gameObject.render();
+		}
+	}
+	
+	/*
+	 * we only want to iterate trough
+	 * the towers once, when the mouse is clicked
+	 * , and tell they "now the mouse was clicked,
+	 * please let me know if i hit you or not
+	 * (check out the setIsGRabbed-method, which
+	 * is boolean and gives back if it was hit or not.
+	 * Right so we create a tower that can be referred 
+	 * to later when we move the mouse.
+	 */
+	
+	Tower t =null;
+	public void setInput(String kind, float x, float y) {
+		
+		switch (kind) {
+		
+		case "leftClick":
+			for(GameObject o : objects) {
+				if( o instanceof Tower) {
+					if(((Tower) o).setIsGrabbed(x, y)) {
+						t = ((Tower) o);
+						break;
+					}
+				}
+			}
+		
+		case "leftDown":
+			if(t != null) t.setIsGrabbedMoved(x, y);
+		
+			break;
 		}
 	}
 }

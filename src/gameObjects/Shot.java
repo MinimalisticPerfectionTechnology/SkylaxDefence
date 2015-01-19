@@ -6,7 +6,6 @@ public class Shot extends GameObject {
 
 	
 	public static float SHOT_VELOSITY = 10;
-	private Physics physics = new Physics();
 	
 	public static final float R = 0.5f;
 	public static final float G = 0.5f;
@@ -18,6 +17,7 @@ public class Shot extends GameObject {
 	public int velosity = 10;
 //	public int velosityY;
 	private double angle;
+	private boolean destroyMe = false;
 
 	public Shot(float x, float y, float dx, float dy) {
 
@@ -44,11 +44,18 @@ public class Shot extends GameObject {
 		x += dx * SHOT_VELOSITY;
 		y += dy * SHOT_VELOSITY;
 		for(Enemy enemy : game.Game.enemys) {
-			if(physics.checkCollisions(this, enemy)) {
+			if(Physics.checkCollisions(this, enemy)) {
 				enemy.gotHit();
+				destroyMe = true;
 			}
 		}
 //		x += velosityX;
 //		y += velosityY;
+	}
+
+
+	public boolean isDestroyMe() {
+		// TODO Auto-generated method stub
+		return destroyMe;
 	}
 }
