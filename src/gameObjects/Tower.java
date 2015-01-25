@@ -131,7 +131,7 @@ public class Tower extends GameObject implements shootable{
 			
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 			
-			game.Game.objectsToAdd.add(new Shot(x, y, d[0], d[1]));
+			game.Game.objectsToAdd.add(new Shot(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
 			
 //			enemy.gotHit();
 			if(enemy.health <= 0){

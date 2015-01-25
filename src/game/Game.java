@@ -45,11 +45,19 @@ public class Game {
 		// Display.getHeight() / 2 - GOShot.SIZE / 2);
 		// objects.add(shot);
 		
-		grass = Draw.createTile(true);
-		dirt = Draw.createTile(false);
+		grass = Draw.createTexture(true);
+		dirt = Draw.createTexture(false);
+		grass = Draw.createTexture(true);
 		
-		Tile grass = new Tile(0, 0, 64, 64, TileType.Grass);
-		tiles[0][0] = grass;
+//		for(int i = 0; i < 10; i++){
+//			for(int ii = 0; ii < 15; ii++){
+//				tiles[i][ii] = Tile;
+//			}
+//		}
+//		Tile grass = new Tile(0, 0, 64, 64, a Tile or something);
+//		tiles[0][0] = grass;
+//		tiles[1][0] = grass;
+//		tiles[2][0] = grass;
 
 		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
 		tiles[0][1] = (dirt);
@@ -167,7 +175,17 @@ public class Game {
 	public void render() {
 		// Draw.background();
 		Draw.DrawQuadTex(grass, 0, 0, 64, 64);
+		Draw.DrawQuadTex(grass, 64, 0, 64, 64);
+		Draw.DrawQuadTex(grass, 128, 0, 64, 64);
+		Draw.DrawQuadTex(grass, 192, 0, 64, 64);
 		Draw.DrawQuadTex(dirt, 0, 64, 64, 64);
+		Draw.DrawQuadTex(dirt, 64, 64, 64, 64);
+		Draw.DrawQuadTex(dirt, 128, 64, 64, 64);
+		
+		Draw.DrawQuadTex(dirt, 0, 128, 64, 64);
+		Draw.DrawQuadTex(dirt, 64, 128, 64, 64);
+
+		Draw.DrawQuadTex(dirt, 0, 192, 64, 64);
 
 		for(int i = 0; i < 10; i++){
 			for(int ii = 0; ii < 15; ii++){

@@ -53,7 +53,7 @@ public class Draw {
 	
 	
 	
-	public static Texture createTile(boolean b){
+	public static Texture createTexture(boolean b){
 		Texture t = quickLoad(b?("grass64"):"dirt64");
 		return t;
 	}
