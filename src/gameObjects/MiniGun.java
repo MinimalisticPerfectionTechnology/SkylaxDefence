@@ -1,5 +1,7 @@
 package gameObjects;
 
+import java.util.ArrayList;
+
 public class MiniGun extends Tower {
 
 	public static final float R = 0.4f;
@@ -13,8 +15,8 @@ public class MiniGun extends Tower {
 	public int velosityX;
 	public int velosityY;
 
-	public MiniGun(float x, float y) {
-		super(x, y);
+	public MiniGun(float x, float y, ArrayList<Enemy>enemys) {
+		super(x, y, enemys);
 		this.range = 500;
 		this.damege = 1;
 		this.fireRate = 10;

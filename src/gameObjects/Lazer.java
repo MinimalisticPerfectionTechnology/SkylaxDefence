@@ -1,13 +1,15 @@
 package gameObjects;
 
+import java.util.ArrayList;
+
 public class Lazer extends Tower {
 
 	public static final float R = 1f;
 	public static final float G = 1f;
 	public static final float B = 1f;
 
-	public Lazer(float x, float y) {
-		super(x, y);
+	public Lazer(float x, float y, ArrayList<Enemy>enemys) {
+		super(x, y, enemys);
 		this.range = 600;
 		this.damege = 100;
 		this.fireRate = 5;

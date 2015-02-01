@@ -15,7 +15,7 @@ public class Tower extends GameObject implements shootable{
 	public int velosityX;
 	public int velosityY;
 	public Priority priority;
-	
+	protected ArrayList<Enemy> enemys;
 	
 	private float angle;
 	
@@ -30,9 +30,10 @@ public class Tower extends GameObject implements shootable{
 
 	// protected int INTERVAL;
 
-	public Tower(float x, float y) {
+	public Tower(float x, float y, ArrayList<Enemy>enemys) {
 		this.x = x;
 		this.y = y;
+		this.enemys = enemys;
 		sx = 40;
 		sy = 40;
 		enemysInRange = new ArrayList<Enemy>();
@@ -51,7 +52,7 @@ public class Tower extends GameObject implements shootable{
 	@Override
 	public void update() {
 		enemysInRange.clear();
-		for(Enemy enemy : game.Game.enemys){
+		for(Enemy enemy : enemys){
 			if(enemy.isInRange(x, y, range)){
 			enemysInRange.add(enemy);
 			}
