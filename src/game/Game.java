@@ -89,12 +89,12 @@ public class Game {
 		// enemys.add(tank2);
 		// objects.add(tank2);
 
-		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4);
+		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4, enemys);
 		objects.add(miniGun1);
 		
 		
 		
-		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2);
+		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2, enemys);
 		objects.add(miniGun2);
 		
 //		
