@@ -3,6 +3,7 @@ package game;
 import gameObjects.Drone;
 import gameObjects.Enemy;
 import gameObjects.GameObject;
+import gameObjects.Map;
 import gameObjects.MiniGun;
 import gameObjects.Shot;
 import gameObjects.Tank;
@@ -21,6 +22,8 @@ import actions.ActionHandler;
 import actions.UserInput;
 
 public class Game {
+	
+	public static Map map = null;
 	public static Tile[][] tiles;
 	public static Texture grass;
 	public static Texture dirt;
@@ -34,6 +37,7 @@ public class Game {
 
 	public Game() {
 //		tiles = new ArrayList<Tile>();
+		map = new Map();
 		tiles = new Tile[10][15];
 		objectsToAdd = new ArrayList<GameObject>();
 		enemiesToAdd = new ArrayList<Enemy>();
@@ -62,11 +66,11 @@ public class Game {
 		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
 		tiles[0][1] = (dirt);
 
-		Drone drone1 = new Drone(50, 50, 20, 20);
+		Drone drone1 = new Drone(Draw.WIDTH/2, 50, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
 
-		Drone drone2 = new Drone(200, 40, 60, 60);
+		Drone drone2 = new Drone(Draw.WIDTH/2, 40, 60, 60);
 		drone2.gotHit();
 		drone2.gotHit();
 		drone2.gotHit();
@@ -77,7 +81,7 @@ public class Game {
 //		 enemys.add(drone3);
 //		 objects.add(drone3);
 		
-		Tank tank1 = new Tank(600, 5, 80, 80);
+		Tank tank1 = new Tank(Draw.WIDTH/2, 5, 80, 80);
 		enemys.add(tank1);
 		objects.add(tank1);
 
@@ -118,7 +122,7 @@ public class Game {
 		
 		
 		for (Enemy enemy : enemys){
-			System.out.println("Enemy health: " + enemy.health);
+			//System.out.println("Enemy health: " + enemy.health);
 		}
 		
 		
@@ -133,16 +137,16 @@ public class Game {
 		for (Iterator<Enemy> iterator = enemys.iterator(); iterator.hasNext();) {
 //			System.out.println("iterator");
 			Enemy enemy = iterator.next();
-			if (enemy.health <= 0 || (enemy.getX() < 0 || enemy.getX() > Draw.WIDTH || enemy.getY() < 0 || enemy.getY() > Draw.HEIGHT)){
+			if (enemy.health <= 0 || Physics.hasLeftScreen(enemy)){
 				// Remove the current element from the iterator and the list.
 				objects.remove(enemy);
 				iterator.remove();
 				if(bool == 0){
-				enemyLocal = new Drone((float) (Math.random()*Draw.WIDTH), 40, 20, 20);
+				enemyLocal = new Drone((float) Draw.WIDTH/2, 40, 20, 20);
 				bool = 1;
 				}
 				else {
-					enemyLocal = new Tank((float) (Math.random()*Draw.WIDTH), 5, 80, 80);
+					enemyLocal = new Tank((float) Draw.WIDTH/2, 5, 80, 80);
 					bool = 0;
 				}
 				objectsToAdd.add(enemyLocal);
@@ -151,17 +155,17 @@ public class Game {
 			}
 
 		}
-
 		for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
 			GameObject o = iterator.next();
 			o.update();
+			
 			if (o instanceof Shot) {
 				
 				if(((Shot) o).isDestroyMe()) {
 					iterator.remove();
 				}
 			}
-			if((o.getX() < 0 || o.getX() > Draw.WIDTH || o.getY() < 0 || o.getY() > Draw.HEIGHT) && iterator.hasNext()) {
+			if(Physics.hasLeftScreen(o) && iterator.hasNext()) {
 				iterator.remove();			//FIXME can't remove if a shot is on its way to it
 			}
 			
@@ -170,7 +174,23 @@ public class Game {
 		objects.addAll(objectsToAdd);
 		objectsToAdd.clear();
 		enemiesToAdd.clear();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
 
 	public void render() {
 		// Draw.background();

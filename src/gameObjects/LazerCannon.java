@@ -1,12 +1,12 @@
 package gameObjects;
 
-public class Lazer extends Tower {
+public class LazerCannon extends Tower {
 
 	public static final float R = 1f;
 	public static final float G = 1f;
 	public static final float B = 1f;
 
-	public Lazer(float x, float y) {
+	public LazerCannon(float x, float y) {
 		super(x, y);
 		this.range = 600;
 		this.damege = 100;
@@ -20,6 +20,12 @@ public class Lazer extends Tower {
 		this.sx = 40;
 		this.sy = 40;
 		// INTERVAL = 3;
+	}
+
+	@Override
+	protected void shoot(Enemy emeny) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	// @Override

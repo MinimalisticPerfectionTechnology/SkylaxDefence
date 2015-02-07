@@ -1,6 +1,8 @@
 package gameObjects;
 
-public class Enemy extends GameObject implements Comparable<Enemy> {
+import game.Game;
+
+public class Enemy extends GameObject implements Comparable<Enemy>{
 
 	public int health;
 	public int speed;
@@ -28,9 +30,42 @@ public class Enemy extends GameObject implements Comparable<Enemy> {
 
 	public void gotDestroyed() {
 	}
-
+	private int i = 0;
 	@Override
 	public void update() {
+		
+		/*third argument: 1 = came from right, 2 = came
+		 * from down, 3 = came from left, 4 = came from up.
+		 */
+		
+		/*
+		int k = Game.map.getDirection(x, y, i);
+		if(k == 1) {
+			dx = -1;
+			dy = 0;
+			i= 3;
+		}
+		else if(k == 2) {
+			dx = 0;
+			dy = 1;
+			i= 4;
+		}
+		else if(k == 3) {
+			dx = 1;
+			dy = 0;
+			i= 1;
+		}
+		else if(k == 4) {
+			dx = 0;
+			dy = -1;
+			i= 2;
+		}
+		else {
+			dx = 1;
+			dy = 1;
+		}
+		
+		*/
 		this.x += dx * speed;
 		this.y += dy * speed;
 		

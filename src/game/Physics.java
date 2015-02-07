@@ -1,6 +1,7 @@
 package game;
 
 import gameObjects.GameObject;
+import helpers.Draw;
 
 import java.awt.Rectangle;
 //import java.io.ObjectInputStream.GetField;
@@ -19,5 +20,11 @@ public class Physics {
 		Rectangle r = new Rectangle((int)go.getX(), (int)go.getY(), (int)go.getSX(), (int)go.getSY());
 		
 		return r.intersects(x, y, r.getWidth(), r.getHeight());
+	}
+	public static boolean hasLeftScreen(GameObject o) {
+		if(o.getX() < 0 || o.getX() > Draw.WIDTH || o.getY() < 0 || o.getY() > Draw.HEIGHT) {
+			return true;
+		}
+		return false;
 	}
 }
