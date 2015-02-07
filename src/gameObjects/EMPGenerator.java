@@ -8,9 +8,12 @@ public class EMPGenerator extends Tower{
 	}
 
 	@Override
-	protected void shoot(Enemy emeny) {
-		// TODO Auto-generated method stub
-		
+	public void update(){
+		prepareForShooting();
 	}
-
+	
+	@Override
+	protected void shoot() {
+		Shot shot = new EMPBlast(sx, sy, dx, dy);
+	}
 }

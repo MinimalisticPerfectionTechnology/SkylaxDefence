@@ -15,12 +15,6 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 	public int velosityX;
 	public int velosityY;
 	public Priority priority;
-
-
-
-
-
-
 	private float angle;
 
 	//	private boolean isShooting = false;
@@ -54,27 +48,28 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 
 	@Override
 	public void update() {
+	}
+
+	protected void prepareForShooting(){
 		enemysInRange.clear();
 		for(Enemy enemy : game.Game.enemys){
 			if(enemy.isInRange(x, y, range)){
 				enemysInRange.add(enemy);
 			}
 		}
-
-
+		
 		//				System.out.println(isShooting ? "Is shooting" : "Not shooting");
 		//		 isShooting? shoot(aim()): System.out.println("skjuter redan");
 		if (counter % (60 / fireRate) == 0) {
-			shoot(selectEnemy());
+			shoot();
 		} else if (counter > (60 / fireRate)) {
 			counter = 0;
 		}
 		counter++;
-
 	}
 
 	protected Enemy selectEnemy() {
-		
+
 		if(!enemysInRange.isEmpty()){
 			switch (priority) {
 
@@ -119,14 +114,12 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 				System.out.println("Priority is: SLOW");
 			}
 		}
-		
+
 		// return enemys.get(0);
 		return null;
 	}
-	
-	
 
-	protected abstract void shoot(Enemy emeny);
+	protected abstract void shoot();
 
 	/*
 	 * a method I cheched up on google (only to
@@ -174,10 +167,6 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 	 * to the general game-class.
 	 */
 
-
-
-
-
 	public boolean setIsGrabbed(float x, float y) {
 
 		if(Physics.checkCollectionCoordinates(this, x, y)) {
@@ -221,7 +210,7 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 	 * that certain amont of inerations.
 	 */
 
-	protected float[] getNewEnemyCoordinates(Enemy enemy) {
+	protected float[] getNewEnemyCoordinates(Enemy enemy, float SHOT_VELOSITY) {
 
 
 		float enemyXMove = enemy.getDx() * enemy.getSpeed();
@@ -234,7 +223,7 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 
 		int i = 1;
 		while(true) {
-			if(currentLenght <= Shot.SHOT_VELOSITY*i) {
+			if(currentLenght <= SHOT_VELOSITY*i) {
 				return new float[]{currentEX, currentEY};
 			} else {
 				currentEX += enemyXMove;

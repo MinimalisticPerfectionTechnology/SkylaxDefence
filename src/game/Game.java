@@ -5,6 +5,7 @@ import gameObjects.Enemy;
 import gameObjects.GameObject;
 import gameObjects.Map;
 import gameObjects.MiniGun;
+import gameObjects.RocketLauncher;
 import gameObjects.Shot;
 import gameObjects.Tank;
 import gameObjects.Tower;
@@ -89,13 +90,16 @@ public class Game {
 		// enemys.add(tank2);
 		// objects.add(tank2);
 
-		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4, enemys);
+		MiniGun miniGun1 = new MiniGun(Display.getWidth() - 200, Display.getHeight() / 4);
 		objects.add(miniGun1);
 		
 		
 		
-		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2, enemys);
+		MiniGun miniGun2 = new MiniGun(Display.getWidth() - 700, Display.getHeight() / 2);
 		objects.add(miniGun2);
+		
+		RocketLauncher rocketLauncher1 = new RocketLauncher(Display.getWidth()/4, Display.getHeight()/4);
+		objects.add(rocketLauncher1);
 		
 //		
 //		GOMiniGun miniGun3 = new GOMiniGun(Display.getWidth() - 400, Display.getHeight() / 6, enemys);
