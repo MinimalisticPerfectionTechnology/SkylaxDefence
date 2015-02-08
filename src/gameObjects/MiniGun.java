@@ -9,6 +9,7 @@ public class MiniGun extends Tower {
 	//	public int velosityX;
 	//	public int velosityY;
 
+
 	public MiniGun(float x, float y) {
 		super(x, y);
 		this.range = 500;

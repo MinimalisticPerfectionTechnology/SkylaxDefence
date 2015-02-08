@@ -6,6 +6,7 @@ public class RocketLauncher extends Tower {
 	public static final float G = 1f;
 	public static final float B = 1f;
 
+
 	public RocketLauncher(float x, float y) {
 		super(x, y);
 		this.range = 700;
