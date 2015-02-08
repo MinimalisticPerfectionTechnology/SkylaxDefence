@@ -9,7 +9,7 @@ public class EMPGenerator extends Tower{
 	public EMPGenerator(float x, float y) {
 		super(x, y);
 		this.range = 700;
-		this.damege = 300;
+		this.damage = 300;
 		this.fireRate = 1;
 
 		red = R;
@@ -29,7 +29,7 @@ public class EMPGenerator extends Tower{
 	@Override
 	protected void shoot() {
 		if(!(enemysInRange == null)){
-			game.Game.objectsToAdd.add(new EMPBlast(x, y));
+			game.Game.objectsToAdd.add(new EMPBlast(x, y, damage));
 		}
 	}
 }

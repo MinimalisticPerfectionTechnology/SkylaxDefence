@@ -9,7 +9,7 @@ public class LazerCannon extends Tower {
 	public LazerCannon(float x, float y) {
 		super(x, y);
 		this.range = 600;
-		this.damege = 100;
+		this.damage = 100;
 		this.fireRate = 5;
 
 		red = R;

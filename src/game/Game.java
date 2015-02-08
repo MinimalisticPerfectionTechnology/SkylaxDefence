@@ -72,8 +72,8 @@ public class Game {
 //		tiles[1][0] = grass;
 //		tiles[2][0] = grass;
 
-		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
-		tiles[0][1] = (dirt);
+//		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
+//		tiles[0][1] = (dirt);
 
 		Drone drone1 = new Drone(Draw.WIDTH/2, 50, 20, 20);
 		enemys.add(drone1);

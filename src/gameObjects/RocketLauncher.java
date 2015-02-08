@@ -10,7 +10,7 @@ public class RocketLauncher extends Tower {
 	public RocketLauncher(float x, float y) {
 		super(x, y);
 		this.range = 700;
-		this.damege = 300;
+		this.damage = 50;
 		this.fireRate = 1;
 
 		red = R;
@@ -39,7 +39,7 @@ public class RocketLauncher extends Tower {
 
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 
-			game.Game.objectsToAdd.add(new Rocket(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
+			game.Game.objectsToAdd.add(new Rocket(x, y, d[0], d[1], damage));	//TODO next step: use SHOT_VELOSITY
 
 			//			enemy.gotHit();
 			if(enemy.health <= 0){

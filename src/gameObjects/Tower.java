@@ -10,7 +10,7 @@ import java.util.Comparator;
 public abstract class Tower extends GameObject/* implements shootable*/{
 
 	protected int range;
-	protected int damege;
+	protected int damage;
 	protected int fireRate;
 	public int velosityX;
 	public int velosityY;

@@ -11,14 +11,4 @@ public class Tank extends Enemy{
 		health = 200;
 
 	}
-
-	public void gotHit() {
-//		System.out.println("The tank got hit!");
-		health -=28;
-	}
-	
-	@Override
-	public void gotDestroyed() {
-//		System.out.println("The tank got destroyed!");
-	}
 }

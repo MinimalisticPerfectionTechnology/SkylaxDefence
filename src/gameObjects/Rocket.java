@@ -9,14 +9,16 @@ public class Rocket extends Shot{
 	protected float G = 0f;
 	protected float B = 0f;
 	protected int SIZE = 30;
+	protected int damage;
 	
-	public Rocket(float x, float y, float dx, float dy) {
+	public Rocket(float x, float y, float dx, float dy, int damage) {
 		super(x, y, dx, dy);
 		red = R;
 		green = G;
 		blue = B;
 		this.width = SIZE;
 		this.height = SIZE;
+		this.damage = damage;
 	}
 	
 	@Override
@@ -34,7 +36,7 @@ public class Rocket extends Shot{
 		
 		for(Enemy enemy : game.Game.enemys) {
 			if(Physics.checkCollisions(this, enemy)) {
-				enemy.gotHit();
+				enemy.gotHit(damage);
 				destroyMe = true;
 			}
 		}

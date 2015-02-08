@@ -9,14 +9,16 @@ public class MiniGunBullet extends Shot{
 	protected float G  = 0.4f;
 	protected float B  = 0.4f;
 	protected int SIZE = 10;
+	protected int damage;
 	
-	public MiniGunBullet(float x, float y, float dx, float dy) {
+	public MiniGunBullet(float x, float y, float dx, float dy, int damage) {
 		super(x, y, dx, dy);
 		red = R;
 		green = G;
 		blue = B;
 		this.width = SIZE;
 		this.height = SIZE;
+		this.damage = damage;
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class MiniGunBullet extends Shot{
 		
 		for(Enemy enemy : game.Game.enemys) {
 			if(Physics.checkCollisions(this, enemy)) {
-				enemy.gotHit();
+				enemy.gotHit(damage);
 				destroyMe = true;
 			}
 		}
