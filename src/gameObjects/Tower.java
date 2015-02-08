@@ -15,10 +15,7 @@ public abstract class Tower extends GameObject/* implements shootable*/{
 	public int velosityX;
 	public int velosityY;
 	public Priority priority;
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b629b48db7ae6a4ad2a6985375e2c6362f6b98
 	private float angle;
 
 	//	private boolean isShooting = false;

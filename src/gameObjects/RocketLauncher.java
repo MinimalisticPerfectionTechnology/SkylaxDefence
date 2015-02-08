@@ -8,19 +8,12 @@ public class RocketLauncher extends Tower {
 	public static final float G = 1f;
 	public static final float B = 1f;
 
-<<<<<<< HEAD
-	public RocketLauncher(float x, float y, ArrayList<Enemy>enemys) {
-		super(x, y);
-		this.range = 600;
-		this.damege = 100;
-		this.fireRate = 5;
-=======
+
 	public RocketLauncher(float x, float y) {
 		super(x, y);
 		this.range = 700;
 		this.damege = 300;
 		this.fireRate = 1;
->>>>>>> b1b629b48db7ae6a4ad2a6985375e2c6362f6b98
 
 		r = R;
 		g = G;
