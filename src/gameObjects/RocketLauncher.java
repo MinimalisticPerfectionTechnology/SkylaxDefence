@@ -8,36 +8,47 @@ public class RocketLauncher extends Tower {
 	public static final float G = 1f;
 	public static final float B = 1f;
 
+<<<<<<< HEAD
 	public RocketLauncher(float x, float y, ArrayList<Enemy>enemys) {
 		super(x, y);
 		this.range = 600;
 		this.damege = 100;
 		this.fireRate = 5;
+=======
+	public RocketLauncher(float x, float y) {
+		super(x, y);
+		this.range = 700;
+		this.damege = 300;
+		this.fireRate = 1;
+>>>>>>> b1b629b48db7ae6a4ad2a6985375e2c6362f6b98
 
 		r = R;
 		g = G;
 		b = B;
 		this.x = x;
 		this.y = y;
-		this.sx = 40;
-		this.sy = 40;
+		this.sx = 80;
+		this.sy = 80;
 		// INTERVAL = 3;
+	}
+	
+	@Override
+	public void update(){
+		prepareForShooting();
 	}
 
 	@Override
-	protected void shoot(Enemy enemy) {
-
-
+	protected void shoot() {
+		Enemy enemy = selectEnemy();
 		if(!(enemy == null)){
 
 			//			angle = getAngleToPoint(enemy.getX(), enemy.getY(), x, y);
 
-
-			float[] enemyWillBeAt = getNewEnemyCoordinates(enemy);
+			float[] enemyWillBeAt = getNewEnemyCoordinates(enemy, Rocket.SHOT_VELOSITY);
 
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 
-			game.Game.objectsToAdd.add(new Shot(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
+			game.Game.objectsToAdd.add(new Rocket(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
 
 			//			enemy.gotHit();
 			if(enemy.health <= 0){
@@ -54,4 +65,5 @@ public class RocketLauncher extends Tower {
 		//
 		// }
 	}
+
 }

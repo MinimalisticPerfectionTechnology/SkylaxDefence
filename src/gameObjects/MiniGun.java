@@ -8,18 +8,21 @@ public class MiniGun extends Tower {
 	public static final float G = 0.4f;
 	public static final float B = 0.4f;
 
-	// int range = 20;
-	// int damege = 10;
-	// int fireRate = 3;
+	//	public int velosityX;
+	//	public int velosityY;
 
+<<<<<<< HEAD
 	public int velosityX;
 	public int velosityY;
 
 	public MiniGun(float x, float y, ArrayList<Enemy>enemys) {
+=======
+	public MiniGun(float x, float y) {
+>>>>>>> b1b629b48db7ae6a4ad2a6985375e2c6362f6b98
 		super(x, y);
 		this.range = 500;
-		this.damege = 1;
-		this.fireRate = 1;
+		this.damege = 2;
+		this.fireRate = 10;
 
 		r = R;
 		g = G;
@@ -31,26 +34,23 @@ public class MiniGun extends Tower {
 		// INTERVAL = 3;
 	}
 
-	protected void hitTarget() {
-
-		// TODO Auto-generated method stub
-
+	@Override
+	public void update(){
+		prepareForShooting();
 	}
 
 	@Override
-	protected void shoot(Enemy enemy) {
-
-
+	protected void shoot() {
+		Enemy enemy = selectEnemy();
 		if(!(enemy == null)){
 
 			//			angle = getAngleToPoint(enemy.getX(), enemy.getY(), x, y);
 
-
-			float[] enemyWillBeAt = getNewEnemyCoordinates(enemy);
+			float[] enemyWillBeAt = getNewEnemyCoordinates(enemy, MiniGunBullet.SHOT_VELOSITY);
 
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 
-			game.Game.objectsToAdd.add(new Shot(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
+			game.Game.objectsToAdd.add(new MiniGunBullet(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
 
 			//			enemy.gotHit();
 			if(enemy.health <= 0){

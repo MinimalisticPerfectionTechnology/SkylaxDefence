@@ -23,8 +23,7 @@ public class LazerCannon extends Tower {
 	}
 
 	@Override
-	protected void shoot(Enemy emeny) {
-		// TODO Auto-generated method stub
+	protected void shoot() {
 		
 	}
 
