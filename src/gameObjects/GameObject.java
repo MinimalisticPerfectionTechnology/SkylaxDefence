@@ -1,23 +1,25 @@
 package gameObjects;
 
 import helpers.Draw;
+import gameObjects.*;
 
 public abstract class GameObject {
 
-	protected float r;
-	protected float g;
-	protected float b;
+	protected float red;
+	protected float green;
+	protected float blue;
 	protected float x;
 	protected float y;
-	protected float sx;
-	protected float sy;
+	protected float width;
+	protected float height;
 	protected float dx;
 	protected float dy;
 
 	public abstract void update();
 
 	public void render() {
-		Draw.rect(r, g, b, x, y, sx, sy);
+		Draw.circle(red, green, blue, width, height, 50);
+		Draw.rect(red, green, blue, x, y, width, height);
 	}
 
 	public float getX() {
@@ -36,16 +38,16 @@ public abstract class GameObject {
 		return y;
 	}
 
-	public float getSX() {
-		return sx;
+	public float getWidth() {
+		return width;
 	}
 
-	public float getSY() {
-		return sy;
+	public float getHeight() {
+		return height;
 	}
 
 	public float getCenterY() {
-		return y + sy / 2;
+		return y + width / 2;
 	}
 
 	protected void init(float x, float y) {

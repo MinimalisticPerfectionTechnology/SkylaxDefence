@@ -1,7 +1,5 @@
 package gameObjects;
 
-import java.util.ArrayList;
-
 public class RocketLauncher extends Tower {
 
 	public static final float R = 1f;
@@ -14,13 +12,13 @@ public class RocketLauncher extends Tower {
 		this.damege = 300;
 		this.fireRate = 1;
 
-		r = R;
-		g = G;
-		b = B;
+		red = R;
+		green = G;
+		blue = B;
 		this.x = x;
 		this.y = y;
-		this.sx = 80;
-		this.sy = 80;
+		this.width = 100;
+		this.height = 100;
 		// INTERVAL = 3;
 	}
 	

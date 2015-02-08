@@ -1,6 +1,8 @@
 package game;
 
 import gameObjects.Drone;
+import gameObjects.EMPBlast;
+import gameObjects.EMPGenerator;
 import gameObjects.Enemy;
 import gameObjects.GameObject;
 import gameObjects.Map;
@@ -38,6 +40,13 @@ public class Game {
 
 	public Game() {
 //		tiles = new ArrayList<Tile>();
+
+		Draw.rect(1, 0, 1, 200, 200, 40, 40);
+		Draw.rect(1, 1, 1, 20, 20, 400, 400);
+		Draw.rect(1, 0, 1, 200, 200, 40, 40);
+		
+		Draw.circle(1, 1, 0, 200, 200, 30);
+		
 		map = new Map();
 		tiles = new Tile[10][15];
 		objectsToAdd = new ArrayList<GameObject>();
@@ -52,7 +61,6 @@ public class Game {
 		
 		grass = Draw.createTexture(true);
 		dirt = Draw.createTexture(false);
-		grass = Draw.createTexture(true);
 		
 //		for(int i = 0; i < 10; i++){
 //			for(int ii = 0; ii < 15; ii++){
@@ -100,6 +108,9 @@ public class Game {
 		
 		RocketLauncher rocketLauncher1 = new RocketLauncher(Display.getWidth()/4, Display.getHeight()/4);
 		objects.add(rocketLauncher1);
+		
+		EMPGenerator empGenerator = new EMPGenerator(Display.getWidth()/2, Display.getHeight()/2);
+		objects.add(empGenerator);
 		
 //		
 //		GOMiniGun miniGun3 = new GOMiniGun(Display.getWidth() - 400, Display.getHeight() / 6, enemys);
@@ -206,7 +217,7 @@ public class Game {
 		Draw.DrawQuadTex(dirt, 64, 64, 64, 64);
 		Draw.DrawQuadTex(dirt, 128, 64, 64, 64);
 		
-		Draw.DrawQuadTex(dirt, 0, 128, 64, 64);
+		 Draw.DrawQuadTex(dirt, 0, 128, 64, 64);
 		Draw.DrawQuadTex(dirt, 64, 128, 64, 64);
 
 		Draw.DrawQuadTex(dirt, 0, 192, 64, 64);

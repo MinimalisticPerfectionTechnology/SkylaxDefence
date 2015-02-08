@@ -12,13 +12,13 @@ public class Rocket extends Shot{
 	
 	public Rocket(float x, float y, float dx, float dy) {
 		super(x, y, dx, dy);
-		r = R;
-		g = G;
-		b = B;
-		this.sx = SIZE;
-		this.sy = SIZE;
-		// TODO Auto-generated constructor stub
+		red = R;
+		green = G;
+		blue = B;
+		this.width = SIZE;
+		this.height = SIZE;
 	}
+	
 	@Override
 	public void update() {
 		

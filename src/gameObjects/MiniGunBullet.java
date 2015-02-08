@@ -12,11 +12,11 @@ public class MiniGunBullet extends Shot{
 	
 	public MiniGunBullet(float x, float y, float dx, float dy) {
 		super(x, y, dx, dy);
-		r = R;
-		g = G;
-		b = B;
-		this.sx = SIZE;
-		this.sy = SIZE;
+		red = R;
+		green = G;
+		blue = B;
+		this.width = SIZE;
+		this.height = SIZE;
 	}
 
 	@Override

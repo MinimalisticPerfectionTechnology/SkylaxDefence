@@ -11,12 +11,12 @@ public class Enemy extends GameObject implements Comparable<Enemy>{
 		return speed;
 	}
 
-	public Enemy(float x, float y, float sx, float sy) {
+	public Enemy(float x, float y, float width, float height) {
 
 		this.x = x;
 		this.y = y;
-		this.sx = sx;
-		this.sy = sy;
+		this.width= width;
+		this.height = height;
 		this.dx = 1;
 		this.dy = 1;
 	}
