@@ -9,7 +9,7 @@ public class RocketLauncher extends Tower {
 	public static final float B = 1f;
 
 	public RocketLauncher(float x, float y, ArrayList<Enemy>enemys) {
-		super(x, y, enemys);
+		super(x, y);
 		this.range = 600;
 		this.damege = 100;
 		this.fireRate = 5;

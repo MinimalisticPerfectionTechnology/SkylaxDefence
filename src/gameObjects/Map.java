@@ -81,6 +81,31 @@ public class Map {
 	 * right, down, left or up and if it finds a piece that is 1 there then it
 	 * returns that. as mentioned it will return 0 if no brick was found around it.
 	 */
+	
+	
+
+	private int getDirection2(int order, int X, int Y) {
+		if(X >= 0 && X<nrOfEntities[0] && Y >= 0 && Y<nrOfEntities[1]) {
+			if(map[Y][X] == 1) {
+				return order;
+			} else if (map[Y][X] == 1){
+				
+			}
+			else if(order > 4) return 0;
+			else {
+				switch(order) {
+				case 0: return getDirection(order+1, X+1, Y);
+				case 1: return getDirection(order+1, X-1, Y+1);
+				case 2: return getDirection(order+1, X-1, Y-1);
+				case 3: return getDirection(order+1, X+1, Y+1);
+				}
+			}
+		}
+		return 0;
+	}
+
+	
+	
 	private int getDirection(int order, int X, int Y) {
 		if(X >= 0 && X<nrOfEntities[0] && Y >= 0 && Y<nrOfEntities[1]) {
 			if(map[Y][X] == 1 && order != 0) {

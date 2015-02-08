@@ -16,7 +16,7 @@ public class MiniGun extends Tower {
 	public int velosityY;
 
 	public MiniGun(float x, float y, ArrayList<Enemy>enemys) {
-		super(x, y, enemys);
+		super(x, y);
 		this.range = 500;
 		this.damege = 1;
 		this.fireRate = 1;
