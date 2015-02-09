@@ -80,9 +80,7 @@ public class Game {
 		objects.add(drone1);
 
 		Drone drone2 = new Drone(Draw.WIDTH/2, 40, 60, 60);
-		drone2.gotHit();
-		drone2.gotHit();
-		drone2.gotHit();
+		drone2.gotHit(15);
 		enemys.add(drone2);
 		objects.add(drone2);
 
