@@ -8,17 +8,17 @@ public class Drone extends Enemy {
 		this.g = 0;
 		this.b = 1;
 		this.speed = 1;
-		health = 100;
+		health = 10000;
 
 	}
 
 	public void gotHit() {
-		System.out.println("The drone got hit!");
+		//System.out.println("The drone got hit!");
 		health -=20;
 	}
 
 	@Override
 	public void gotDestroyed() {
-		System.out.println("The drone got destroyed!");
+		//System.out.println("The drone got destroyed!");
 	}
 }

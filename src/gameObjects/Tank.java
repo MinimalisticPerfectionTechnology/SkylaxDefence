@@ -8,7 +8,7 @@ public class Tank extends Enemy{
 		this.g = 1;
 		this.b = 0;
 		this.speed = 1;
-		health = 200;
+		health = 2000;
 
 	}
 

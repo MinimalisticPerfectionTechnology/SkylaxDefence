@@ -30,42 +30,46 @@ public class Enemy extends GameObject implements Comparable<Enemy>{
 
 	public void gotDestroyed() {
 	}
-	private int i = 0;
+	private int i = 2;
+	private int k = 4;
 	@Override
 	public void update() {
 		
 		/*third argument: 1 = came from right, 2 = came
 		 * from down, 3 = came from left, 4 = came from up.
 		 */
-		
-		/*
-		int k = Game.map.getDirection(x, y, i);
+		k = Game.map.getDirection(x, y, i, k);
 		if(k == 1) {
 			dx = -1;
 			dy = 0;
 			i= 3;
+			y = Game.map.snapToY(y);
 		}
 		else if(k == 2) {
 			dx = 0;
 			dy = 1;
 			i= 4;
+			x = Game.map.snapToX(x);
 		}
 		else if(k == 3) {
 			dx = 1;
 			dy = 0;
 			i= 1;
+			y = Game.map.snapToY(y);
 		}
 		else if(k == 4) {
 			dx = 0;
-			dy = -1;
+			dy = 1;
 			i= 2;
+			x = Game.map.snapToX(x);
 		}
 		else {
 			dx = 1;
 			dy = 1;
+
 		}
 		
-		*/
+		
 		this.x += dx * speed;
 		this.y += dy * speed;
 		

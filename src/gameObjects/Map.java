@@ -6,22 +6,23 @@ public class Map {
 	
 	/*
 	 * OOOOOOBBBBBBBSSSSSSS this list is reversed Y-wise!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * aaaand it appears to be reversed even X-wise.
 	 */
 	private int[][] map = new int[][]{
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
-			{0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
-			{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},
-			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
 			{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -64,14 +65,12 @@ public class Map {
 	 * and it will get clearer.
 	 */
 
-	public int getDirection(float floatX, float floatY, int cameFrom) {
+	public int getDirection(float floatX, float floatY, int cameFrom, int headingAt) {
 		int x = normalizedX(floatX);
 		int y = normalizedY(floatY);
-		int pathSpot = getDirection(0, x, y);
-		if(pathSpot != cameFrom) {
-			return pathSpot;
-		}
-		return getDirection(pathSpot+1, x, y);
+		System.out.println("atX:" + x);
+		return getDirectionInternal(x, y, cameFrom, headingAt);
+
 	}
 
 	
@@ -83,7 +82,7 @@ public class Map {
 	 */
 	
 	
-
+/*
 	private int getDirection2(int order, int X, int Y) {
 		if(X >= 0 && X<nrOfEntities[0] && Y >= 0 && Y<nrOfEntities[1]) {
 			if(map[Y][X] == 1) {
@@ -103,38 +102,55 @@ public class Map {
 		}
 		return 0;
 	}
-
+*/
+	//TODO: fixa CAMEFROM! next up 'caus it wont turn
+	/*
+	 * otherwise since it returns where it's heading as default
+	 * since it starts to the rigth and if it comest from the right it
+	 * will fall trouhg and return the same way it's heading at.
+	 */
 	
-	
-	private int getDirection(int order, int X, int Y) {
-		if(X >= 0 && X<nrOfEntities[0] && Y >= 0 && Y<nrOfEntities[1]) {
-			if(map[Y][X] == 1 && order != 0) {
-				return order;
+	private int getDirectionInternal(int X, int Y, int cameFrom, int headingAt) {
+		if(X >= 1 && X<nrOfEntities[0] && Y >= 1 && Y<nrOfEntities[1]) {
+			int one = map[Y][X+1];
+			int two = map[Y+1][X];
+			int three = map[Y][X-1];
+			int four = map[Y-1][X];
+			if(one == 1 && cameFrom != 3) {
+				return 3;
 			}
-			else if(order > 4) return 0;
-			else {
-				switch(order) {
-				case 0: return getDirection(order+1, X+1, Y);
-				case 1: return getDirection(order+1, X-1, Y+1);
-				case 2: return getDirection(order+1, X-1, Y-1);
-				case 3: return getDirection(order+1, X+1, Y+1);
-				}
+			else if(two == 1 && cameFrom != 2) {
+				return 2;
+			}
+			else if(three == 1 && cameFrom != 1) {
+				return 1;
+			}
+			else if(four == 1 && cameFrom != 4) {
+				return 4;
 			}
 		}
-
 		
-
 		return 0;
 	}
 
+	public float snapToY(float yArg) {
+		int y = normalizedY(yArg)+1;
+		return y*Draw.HEIGHT/nrOfEntities[1];
+	}
+	
 
-	public float snapToY(float y) {
-		float leftOver = Draw.HEIGHT%nrOfEntities[1];
+	public float snapToX(float xArg) {
+		int x = normalizedX(xArg)+1;
+		return x*Draw.WIDTH/nrOfEntities[0];
+	}
+	
+	public float snapToY2(float y) {
+		float leftOver = Draw.HEIGHT/nrOfEntities[1];
 		float mod = y%leftOver;
 		return y + mod;
 	}
-	public float snapToX(float x) {
-		float leftOver = Draw.WIDTH%nrOfEntities[0];
+	public float snapToX2(float x) {
+		float leftOver = Draw.WIDTH/nrOfEntities[0];
 		float mod = x%leftOver;
 		return x + mod;
 	}

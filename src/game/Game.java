@@ -67,11 +67,11 @@ public class Game {
 		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
 		tiles[0][1] = (dirt);
 
-		Drone drone1 = new Drone(Draw.WIDTH/2, 50, 20, 20);
+		Drone drone1 = new Drone(Draw.WIDTH/2, 500, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
 
-		Drone drone2 = new Drone(Draw.WIDTH/2, 40, 60, 60);
+		Drone drone2 = new Drone(Draw.WIDTH/2, 400, 60, 60);
 		drone2.gotHit();
 		drone2.gotHit();
 		drone2.gotHit();
@@ -82,7 +82,7 @@ public class Game {
 //		 enemys.add(drone3);
 //		 objects.add(drone3);
 		
-		Tank tank1 = new Tank(Draw.WIDTH/2, 5, 80, 80);
+		Tank tank1 = new Tank(Draw.WIDTH/2, 100, 80, 80);
 		enemys.add(tank1);
 		objects.add(tank1);
 
