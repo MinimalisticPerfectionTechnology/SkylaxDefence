@@ -1,7 +1,7 @@
 package helpers;
-import org.newdawn.slick.opengl.Texture;
 
-import helpers.Draw;;
+import org.newdawn.slick.opengl.Texture;
+import helpers.Draw;
 
 public class TileGrid {
 	public Tile[][] map;

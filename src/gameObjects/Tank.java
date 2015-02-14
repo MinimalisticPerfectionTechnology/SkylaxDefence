@@ -1,24 +1,14 @@
 package gameObjects;
 
 public class Tank extends Enemy{
-	public Tank(float x, float y, float sx, float sy) {
-		super(x, y, sx, sy);
+	public Tank(float x, float y, float width, float height) {
+		super(x, y, width, height);
 
-		this.r = 0;
-		this.g = 1;
-		this.b = 0;
+		this.red = 0;
+		this.green = 1;
+		this.blue = 0;
 		this.speed = 1;
-		health = 2000;
+		health = 250;
 
-	}
-
-	public void gotHit() {
-//		System.out.println("The tank got hit!");
-		health -=28;
-	}
-	
-	@Override
-	public void gotDestroyed() {
-//		System.out.println("The tank got destroyed!");
 	}
 }

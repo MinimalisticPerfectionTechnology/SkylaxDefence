@@ -1,7 +1,5 @@
 package gameObjects;
 
-import java.util.ArrayList;
-
 public class RocketLauncher extends Tower {
 
 	public static final float R = 1f;
@@ -12,16 +10,16 @@ public class RocketLauncher extends Tower {
 	public RocketLauncher(float x, float y) {
 		super(x, y);
 		this.range = 700;
-		this.damege = 300;
+		this.damage = 50;
 		this.fireRate = 1;
 
-		r = R;
-		g = G;
-		b = B;
+		red = R;
+		green = G;
+		blue = B;
 		this.x = x;
 		this.y = y;
-		this.sx = 80;
-		this.sy = 80;
+		this.width = 100;
+		this.height = 100;
 		// INTERVAL = 3;
 	}
 	
@@ -41,7 +39,7 @@ public class RocketLauncher extends Tower {
 
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 
-			game.Game.objectsToAdd.add(new Rocket(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
+			game.Game.objectsToAdd.add(new Rocket(x, y, d[0], d[1], damage));	//TODO next step: use SHOT_VELOSITY
 
 			//			enemy.gotHit();
 			if(enemy.health <= 0){

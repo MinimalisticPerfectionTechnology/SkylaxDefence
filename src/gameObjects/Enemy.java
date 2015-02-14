@@ -2,7 +2,7 @@ package gameObjects;
 
 import game.Game;
 
-public class Enemy extends GameObject implements Comparable<Enemy>{
+public abstract class Enemy extends GameObject implements Comparable<Enemy>{
 
 	public int health;
 	public int speed;
@@ -11,12 +11,12 @@ public class Enemy extends GameObject implements Comparable<Enemy>{
 		return speed;
 	}
 
-	public Enemy(float x, float y, float sx, float sy) {
+	public Enemy(float x, float y, float width, float height) {
 
 		this.x = x;
 		this.y = y;
-		this.sx = sx;
-		this.sy = sy;
+		this.width= width;
+		this.height = height;
 		this.dx = 1;
 		this.dy = 1;
 	}
@@ -25,7 +25,8 @@ public class Enemy extends GameObject implements Comparable<Enemy>{
 		return health;
 	}
 
-	public void gotHit() {
+	public void gotHit(int damegeTaken) {
+		health -= damegeTaken;
 	}
 
 	public void gotDestroyed() {

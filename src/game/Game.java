@@ -1,6 +1,8 @@
 package game;
 
 import gameObjects.Drone;
+import gameObjects.EMPBlast;
+import gameObjects.EMPGenerator;
 import gameObjects.Enemy;
 import gameObjects.GameObject;
 import gameObjects.Map;
@@ -38,6 +40,13 @@ public class Game {
 
 	public Game() {
 //		tiles = new ArrayList<Tile>();
+
+		Draw.rect(1, 0, 1, 200, 200, 40, 40);
+		Draw.rect(1, 1, 1, 20, 20, 400, 400);
+		Draw.rect(1, 0, 1, 200, 200, 40, 40);
+		
+		Draw.circle(1, 1, 0, 200, 200, 30);
+		
 		map = new Map();
 		tiles = new Tile[10][15];
 		objectsToAdd = new ArrayList<GameObject>();
@@ -52,7 +61,6 @@ public class Game {
 		
 		grass = Draw.createTexture(true);
 		dirt = Draw.createTexture(false);
-		grass = Draw.createTexture(true);
 		
 //		for(int i = 0; i < 10; i++){
 //			for(int ii = 0; ii < 15; ii++){
@@ -64,17 +72,15 @@ public class Game {
 //		tiles[1][0] = grass;
 //		tiles[2][0] = grass;
 
-		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
-		tiles[0][1] = (dirt);
+//		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
+//		tiles[0][1] = (dirt);
 
-		Drone drone1 = new Drone(Draw.WIDTH/2, 500, 20, 20);
+		Drone drone1 = new Drone(Draw.WIDTH/2, 50, 20, 20);
 		enemys.add(drone1);
 		objects.add(drone1);
 
-		Drone drone2 = new Drone(Draw.WIDTH/2, 400, 60, 60);
-		drone2.gotHit();
-		drone2.gotHit();
-		drone2.gotHit();
+		Drone drone2 = new Drone(Draw.WIDTH/2, 40, 60, 60);
+		drone2.gotHit(15);
 		enemys.add(drone2);
 		objects.add(drone2);
 
@@ -82,7 +88,7 @@ public class Game {
 //		 enemys.add(drone3);
 //		 objects.add(drone3);
 		
-		Tank tank1 = new Tank(Draw.WIDTH/2, 100, 80, 80);
+		Tank tank1 = new Tank(Draw.WIDTH/2, 5, 80, 80);
 		enemys.add(tank1);
 		objects.add(tank1);
 
@@ -100,6 +106,9 @@ public class Game {
 		
 		RocketLauncher rocketLauncher1 = new RocketLauncher(Display.getWidth()/4, Display.getHeight()/4);
 		objects.add(rocketLauncher1);
+		
+		EMPGenerator empGenerator = new EMPGenerator(Display.getWidth()/2, Display.getHeight()/2);
+		objects.add(empGenerator);
 		
 //		
 //		GOMiniGun miniGun3 = new GOMiniGun(Display.getWidth() - 400, Display.getHeight() / 6, enemys);
@@ -206,7 +215,7 @@ public class Game {
 		Draw.DrawQuadTex(dirt, 64, 64, 64, 64);
 		Draw.DrawQuadTex(dirt, 128, 64, 64, 64);
 		
-		Draw.DrawQuadTex(dirt, 0, 128, 64, 64);
+		 Draw.DrawQuadTex(dirt, 0, 128, 64, 64);
 		Draw.DrawQuadTex(dirt, 64, 128, 64, 64);
 
 		Draw.DrawQuadTex(dirt, 0, 192, 64, 64);

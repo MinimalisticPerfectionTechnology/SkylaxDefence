@@ -17,16 +17,16 @@ import org.newdawn.slick.util.ResourceLoader;
 import org.lwjgl.opengl.Display;
 
 public class Draw {
-//	public static final int WIDTH = 960, HEIGHT = 540;
+	//	public static final int WIDTH = 960, HEIGHT = 540;
 	public static final int WIDTH = 1500, HEIGHT = 800;
-//	 public static final int WIDTH = 1920, HEIGHT = 1080;
+	//	 public static final int WIDTH = 1920, HEIGHT = 1080;
 
 	public static void initDisplay() {
 		Display.setTitle("Scylax Defence");
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.create();
-//			Display.setVSyncEnabled(true);
+			//			Display.setVSyncEnabled(true);
 			Keyboard.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -45,26 +45,26 @@ public class Draw {
 		// glDisable(GL_DEPTH_TEST);
 	}
 
-//	public static void background() {
-//		Texture t = LoadTexture("res/dark_background.jpg", "JPG");
-////		glPushMatrix();
-//		DrawQuadTex(t, 0, 0, WIDTH, HEIGHT);
-//	}
-	
-	
-	
+	//	public static void background() {
+	//		Texture t = LoadTexture("res/dark_background.jpg", "JPG");
+	////		glPushMatrix();
+	//		DrawQuadTex(t, 0, 0, WIDTH, HEIGHT);
+	//	}
+
+
+
 	public static Texture createTexture(boolean b){
 		Texture t = quickLoad(b?("grass64"):"dirt64");
 		return t;
 	}
 
 	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
-//		glPushMatrix();
+		//		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
-//		System.out.println(tex.toString());
+		//		System.out.println(tex.toString());
 		tex.bind();				//FIXME		something with init
 		glTranslatef(x, y, 0);
-//		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glColor3f(1, 1, 1);
 		glBegin(GL_QUADS);
 		{
@@ -81,13 +81,35 @@ public class Draw {
 		glLoadIdentity();
 	}
 
-	public static void rect(float r, float g, float b, float x, float y,
-			float width, float height) {
-		rect(r, g, b, x, y, width, height, 0);
+	public static void circle(float red, float green, float blue, float x, float y, float radios) {
+		glDisable(GL_TEXTURE_2D);
+		glPushMatrix();
+		{
+			
+			glTranslatef(x, y, 0);
+			float rotation = 0;
+			glRotatef(rotation, 0, 0, 1);
+			glColor3f(red, green, blue);
+			glBegin(GL_LINE_STIPPLE);
+			{
+				
+				for(int i = 0; i<360; i++) {
+					
+					double degInRad = Math.toRadians(i);
+					
+					glVertex2d(Math.cos(degInRad) * radios, Math.sin(degInRad) * radios);
+				}
+			}
+			glEnd();
+		}
+		glPopMatrix();
 	}
 
-	public static void rect(float r, float g, float b, float x, float y,
-			float width, float height, float rotation) {
+	public static void rect(float red, float green, float blue, float x, float y, float width, float height) {
+		rect(red, green, blue, x, y, width, height, 0);
+	}
+
+	public static void rect(float red, float green, float blue, float x, float y, float width, float height, float rotation) {
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 		{
@@ -95,7 +117,7 @@ public class Draw {
 			height /= 2;
 			glTranslatef(x, y, 0);
 			glRotatef(rotation, 0, 0, 1);
-			glColor3f(r, g, b);
+			glColor3f(red, green, blue);
 			glBegin(GL_QUADS);
 			{
 				glVertex2f(-width, -height);
@@ -118,7 +140,7 @@ public class Draw {
 		}
 		return tex;
 	}
-	
+
 	public static Texture quickLoad(String name){
 		Texture tex = null;
 		tex = LoadTexture("res/" + name + ".png", "PNG");

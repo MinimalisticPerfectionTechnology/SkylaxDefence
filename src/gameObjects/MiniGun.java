@@ -1,7 +1,5 @@
 package gameObjects;
 
-import java.util.ArrayList;
-
 public class MiniGun extends Tower {
 
 	public static final float R = 0.4f;
@@ -15,16 +13,16 @@ public class MiniGun extends Tower {
 	public MiniGun(float x, float y) {
 		super(x, y);
 		this.range = 500;
-		this.damege = 2;
+		this.damage = 2;
 		this.fireRate = 10;
 
-		r = R;
-		g = G;
-		b = B;
+		red = R;
+		green = G;
+		blue = B;
 		this.x = x;
 		this.y = y;
-		this.sx = 40;
-		this.sy = 40;
+		this.width = 40;
+		this.height = 40;
 		// INTERVAL = 3;
 	}
 
@@ -44,7 +42,7 @@ public class MiniGun extends Tower {
 
 			float[] d = getInternarShotSpeed(x, y, enemyWillBeAt[0], enemyWillBeAt[1]);
 
-			game.Game.objectsToAdd.add(new MiniGunBullet(x, y, d[0], d[1]));	//TODO next step: use SHOT_VELOSITY
+			game.Game.objectsToAdd.add(new MiniGunBullet(x, y, d[0], d[1], damage));	//TODO next step: use SHOT_VELOSITY
 
 			//			enemy.gotHit();
 			if(enemy.health <= 0){
