@@ -7,7 +7,7 @@ public class Drone extends Enemy {
 		this.red = 1;
 		this.green = 0;
 		this.blue = 1;
-		this.speed = 1;
+		this.speed = 0.2f;
 		health = 100;
 
 	}

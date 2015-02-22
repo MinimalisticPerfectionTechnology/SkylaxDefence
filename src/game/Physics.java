@@ -22,7 +22,7 @@ public class Physics {
 		return r.intersects(x, y, r.getWidth(), r.getHeight());
 	}
 	public static boolean hasLeftScreen(GameObject o) {
-		if(o.getX() < 0 || o.getX() > Draw.WIDTH || o.getY() < 0 || o.getY() > Draw.HEIGHT) {
+		if(o.getX() < 100 || o.getX() > Draw.WIDTH-100 || o.getY() < 100 || o.getY() > Draw.HEIGHT-100) {
 			return true;
 		}
 		return false;

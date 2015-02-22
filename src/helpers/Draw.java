@@ -17,9 +17,9 @@ import org.newdawn.slick.util.ResourceLoader;
 import org.lwjgl.opengl.Display;
 
 public class Draw {
-	//	public static final int WIDTH = 960, HEIGHT = 540;
-	public static final int WIDTH = 1500, HEIGHT = 800;
-	//	 public static final int WIDTH = 1920, HEIGHT = 1080;
+		public static final int WIDTH = 960, HEIGHT = 540;
+	//public static final int WIDTH = 1500, HEIGHT = 800;
+//		 public static final int WIDTH = 1920, HEIGHT = 1080;
 
 	public static void initDisplay() {
 		Display.setTitle("Scylax Defence");

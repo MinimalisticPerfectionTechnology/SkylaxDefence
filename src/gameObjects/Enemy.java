@@ -5,9 +5,9 @@ import game.Game;
 public abstract class Enemy extends GameObject implements Comparable<Enemy>{
 
 	public int health;
-	public int speed;
+	public float speed;
 
-	public int getSpeed() {
+	public float getSpeed() {
 		return speed;
 	}
 
@@ -31,43 +31,40 @@ public abstract class Enemy extends GameObject implements Comparable<Enemy>{
 
 	public void gotDestroyed() {
 	}
-	private int i = 2;
-	private int k = 4;
+	private String cameFrom = "LEFT";
+	private String direction = "RIGHT";
 	@Override
 	public void update() {
 		
 		/*third argument: 1 = came from right, 2 = came
 		 * from down, 3 = came from left, 4 = came from up.
 		 */
-		k = Game.map.getDirection(x, y, i, k);
-		if(k == 1) {
+		
+		direction = Game.map.getDirection(x, y, cameFrom, direction);
+		if(direction == "LEFT") {
 			dx = -1;
 			dy = 0;
-			i= 3;
+			cameFrom= "RIGTH";
 			y = Game.map.snapToY(y);
 		}
-		else if(k == 2) {
-			dx = 0;
-			dy = 1;
-			i= 4;
-			x = Game.map.snapToX(x);
-		}
-		else if(k == 3) {
+		else if(direction == "RIGTH") {
 			dx = 1;
 			dy = 0;
-			i= 1;
+			cameFrom= "LEFT";
 			y = Game.map.snapToY(y);
 		}
-		else if(k == 4) {
+		else if(direction == "DOWN") {
 			dx = 0;
-			dy = 1;
-			i= 2;
+			dy = -1;
+			cameFrom= "UP";
 			x = Game.map.snapToX(x);
 		}
-		else {
-			dx = 1;
-			dy = 1;
 
+		else if(direction == "UP") {
+			dx = 0;
+			dy = 1;
+			cameFrom= "DOWN";
+			x = Game.map.snapToX(x);
 		}
 		
 		
