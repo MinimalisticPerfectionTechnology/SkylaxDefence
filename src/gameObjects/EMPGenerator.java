@@ -1,5 +1,7 @@
 package gameObjects;
 
+import helpers.Draw;
+
 public class EMPGenerator extends Tower{
 	
 	public static final float R = 0f;
@@ -9,7 +11,7 @@ public class EMPGenerator extends Tower{
 	public EMPGenerator(float x, float y) {
 		super(x, y);
 		this.range = 700;
-		this.damage = 300;
+//		this.damage = 300;
 		this.fireRate = 1;
 
 		red = R;
@@ -31,5 +33,9 @@ public class EMPGenerator extends Tower{
 		if(!(enemysInRange == null)){
 			game.Game.objectsToAdd.add(new EMPBlast(x, y, damage));
 		}
+	}
+	@Override
+	public void render(){		
+		Draw.rect(red, green, blue, x, y, width, height);
 	}
 }

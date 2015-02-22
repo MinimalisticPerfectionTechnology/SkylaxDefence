@@ -41,11 +41,11 @@ public class Game {
 	public Game() {
 //		tiles = new ArrayList<Tile>();
 
-		Draw.rect(1, 0, 1, 200, 200, 40, 40);
+		Draw.rect(1, 0, 1, 300, 300, 30, 30);
 		Draw.rect(1, 1, 1, 20, 20, 400, 400);
 		Draw.rect(1, 0, 1, 200, 200, 40, 40);
 		
-		Draw.circle(1, 1, 0, 200, 200, 30);
+//		Draw.circle(1, 1, 0, 200, 200, 30);
 		
 		map = new Map();
 		tiles = new Tile[10][15];

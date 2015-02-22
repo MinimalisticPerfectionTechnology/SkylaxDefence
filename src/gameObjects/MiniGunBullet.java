@@ -1,6 +1,7 @@
 package gameObjects;
 
 import game.Physics;
+import helpers.Draw;
 
 public class MiniGunBullet extends Shot{
 	public static float SHOT_VELOSITY = 40;
@@ -8,7 +9,7 @@ public class MiniGunBullet extends Shot{
 	protected float R = 0.4f;
 	protected float G  = 0.4f;
 	protected float B  = 0.4f;
-	protected int SIZE = 10;
+	protected int RADIUS = 10;
 	protected int damage;
 	
 	public MiniGunBullet(float x, float y, float dx, float dy, int damage) {
@@ -16,8 +17,7 @@ public class MiniGunBullet extends Shot{
 		red = R;
 		green = G;
 		blue = B;
-		this.width = SIZE;
-		this.height = SIZE;
+		this.radius = RADIUS;
 		this.damage = damage;
 	}
 
@@ -42,5 +42,11 @@ public class MiniGunBullet extends Shot{
 		}
 //		x += velosityX;
 //		y += velosityY;
+	}
+	
+	@Override
+	public void render(){
+//		Draw.rect(red, green, blue, x, y, width, height);
+		Draw.circle(red, green, blue, radius);
 	}
 }

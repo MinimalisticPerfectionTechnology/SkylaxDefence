@@ -81,14 +81,14 @@ public class Draw {
 		glLoadIdentity();
 	}
 
-	public static void circle(float red, float green, float blue, float x, float y, float radios) {
+	public static void circle(float red, float green, float blue, float radius) {
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 		{
 			
-			glTranslatef(x, y, 0);
-			float rotation = 0;
-			glRotatef(rotation, 0, 0, 1);
+//			glTranslatef(x, y, 0);
+//			float rotation = 0;
+//			glRotatef(rotation, 0, 0, 1);
 			glColor3f(red, green, blue);
 			glBegin(GL_LINE_STIPPLE);
 			{
@@ -97,7 +97,7 @@ public class Draw {
 					
 					double degInRad = Math.toRadians(i);
 					
-					glVertex2d(Math.cos(degInRad) * radios, Math.sin(degInRad) * radios);
+					glVertex2d(Math.cos(degInRad) * radius, Math.sin(degInRad) * radius);
 				}
 			}
 			glEnd();

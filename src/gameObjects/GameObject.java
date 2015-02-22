@@ -3,7 +3,7 @@ package gameObjects;
 import helpers.Draw;
 import gameObjects.*;
 
-public abstract class GameObject {
+public class GameObject {
 
 	protected float red;
 	protected float green;
@@ -12,14 +12,15 @@ public abstract class GameObject {
 	protected float y;
 	protected float width;
 	protected float height;
+	protected float radius;
 	protected float dx;
 	protected float dy;
 
-	public abstract void update();
+	public void update() {
+	}
 
 	public void render() {
-		Draw.circle(red, green, blue, width, height, 50);
-		Draw.rect(red, green, blue, x, y, width, height);
+//		Draw.rect(red, green, blue, x, y, width, height);
 	}
 
 	public float getX() {
