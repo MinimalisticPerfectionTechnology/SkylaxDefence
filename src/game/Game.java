@@ -13,6 +13,7 @@ import gameObjects.Tank;
 import gameObjects.Tower;
 import helpers.Draw;
 import helpers.Tile;
+import helpers.TileGrid;
 import helpers.TileType;
 
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ import actions.ActionHandler;
 import actions.UserInput;
 
 public class Game {
-	
+	private final int startX = 500;
+	private final int startY = 110;
 	public static Map map = null;
 	public static Tile[][] tiles;
 	public static Texture grass;
 	public static Texture dirt;
+	private TileGrid tileGrid;
 //	public static ArrayList<Tile> tiles;
 	public static ArrayList<GameObject> objectsToAdd;
 	public static ArrayList<Enemy> enemiesToAdd;
@@ -40,7 +43,6 @@ public class Game {
 
 	public Game() {
 //		tiles = new ArrayList<Tile>();
-
 		Draw.rect(1, 0, 1, 200, 200, 40, 40);
 		Draw.rect(1, 1, 1, 20, 20, 400, 400);
 		Draw.rect(1, 0, 1, 200, 200, 40, 40);
@@ -62,6 +64,7 @@ public class Game {
 		grass = Draw.createTexture(true);
 		dirt = Draw.createTexture(false);
 		
+		tileGrid = new TileGrid();
 //		for(int i = 0; i < 10; i++){
 //			for(int ii = 0; ii < 15; ii++){
 //				tiles[i][ii] = Tile;
@@ -75,11 +78,11 @@ public class Game {
 //		Tile dirt = new Tile(65, 0, 64, 64, TileType.Dirt);
 //		tiles[0][1] = (dirt);
 
-		Drone drone1 = new Drone(Draw.WIDTH/2, 50, 20, 20);
+		Drone drone1 = new Drone(startX, startY, 20, 20);
 		enemys.add(drone1);
-		objects.add(drone1);
+		objects.add(drone1); 
 
-		Drone drone2 = new Drone(Draw.WIDTH/2, 40, 60, 60);
+		Drone drone2 = new Drone(startX, startY, 60, 60);
 		drone2.gotHit(15);
 		enemys.add(drone2);
 		objects.add(drone2);
@@ -88,7 +91,7 @@ public class Game {
 //		 enemys.add(drone3);
 //		 objects.add(drone3);
 		
-		Tank tank1 = new Tank(Draw.WIDTH/2, 5, 80, 80);
+		Tank tank1 = new Tank(startX, startY, 80, 80);
 		enemys.add(tank1);
 		objects.add(tank1);
 
@@ -155,11 +158,11 @@ public class Game {
 				objects.remove(enemy);
 				iterator.remove();
 				if(bool == 0){
-				enemyLocal = new Drone((float) Draw.WIDTH/2, 40, 20, 20);
+				enemyLocal = new Drone(startX,startY, 20, 20);
 				bool = 1;
 				}
 				else {
-					enemyLocal = new Tank((float) Draw.WIDTH/2, 5, 80, 80);
+					enemyLocal = new Tank(startX, startY, 80, 80);
 					bool = 0;
 				}
 				objectsToAdd.add(enemyLocal);
@@ -207,6 +210,9 @@ public class Game {
 
 	public void render() {
 		// Draw.background();
+		
+		tileGrid.draw();
+		/*
 		Draw.DrawQuadTex(grass, 0, 0, 64, 64);
 		Draw.DrawQuadTex(grass, 64, 0, 64, 64);
 		Draw.DrawQuadTex(grass, 128, 0, 64, 64);
@@ -220,11 +226,13 @@ public class Game {
 
 		Draw.DrawQuadTex(dirt, 0, 192, 64, 64);
 
-		for(int i = 0; i < 10; i++){
-			for(int ii = 0; ii < 15; ii++){
+		*/
+		
+//		for(int i = 0; i < 10; i++){
+//			for(int ii = 0; ii < 15; ii++){
 //				Draw.DrawQuadTex(tiles[i][ii].getTexture(), tiles[i][ii].getX(), tiles[i][ii].getY(), tiles[i][ii].getWidth(), tiles[i][ii].getHeight());
-			}
-		}			
+//			}
+//		}			
 
 		for (GameObject gameObject : objects) {
 			gameObject.render();
